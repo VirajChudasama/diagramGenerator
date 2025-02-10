@@ -1,0 +1,11 @@
+%%{init: {"theme": "base", "themeVariables": { "background_color": "#f9f9f9", "arrow_color": "#4A90E2", "box_color": "#EAEAEA"}}}%%
+flowchart TD
+    A[Upload Document]:::box -->|Process| B[Document Preprocessing]:::box
+    B -->|Extract Text| C[Text Extraction]:::box
+    C -->|Analyze Content| D[Content Analysis]:::box
+    D -->|Classify Document| E[Document Classification]:::box
+    E -->|Generate Insights| F[Insight Generation]:::box
+    F -->|Output Results| G[Result Presentation]:::box
+    
+    classDef box fill: background_color, stroke: #333, stroke-width: 1px;
+    classDef arrow stroke: arrow_color, stroke-width: 2px;

@@ -1,0 +1,43 @@
+@startuml
+!define RECTANGLECOLOR #87CEEB
+!define ARROW_COLOR #FF4500
+!define BACKGROUND_COLOR #F5F5DC
+
+skinparam backgroundColor BACKGROUND_COLOR
+skinparam node {
+    BackgroundColor RECTANGLECOLOR
+    BorderColor black
+}
+
+skinparam ArrowColor ARROW_COLOR
+skinparam note {
+    BackgroundColor #white
+    BorderColor BLACK
+}
+
+rectangle "Document Ingestion" as ingestion {
+    note right of ingestion : Collects various document types
+}
+
+rectangle "Text Extraction" as extraction {
+    note right of extraction : Uses OCR and NLP technologies
+}
+
+rectangle "Data Validation" as validation {
+    note right of validation : Validates extracted data
+}
+
+rectangle "Data Categorization" as categorization {
+    note right of categorization : Categorizes info based on context
+}
+
+rectangle "Final Output" as output {
+    note right of output : Returns structured data
+}
+
+ingestion --> extraction : "Send documents"
+extraction --> validation : "Extracted text"
+validation --> categorization : "Validated data"
+categorization --> output : "Categorized data"
+
+@enduml

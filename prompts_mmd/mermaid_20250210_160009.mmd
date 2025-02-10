@@ -1,0 +1,15 @@
+flowchart TD
+    style A fill:#87CEEB
+    style B fill:#87CEEB
+    style C fill:#87CEEB
+    style D fill:#87CEEB
+    style E fill:#87CEEB
+    style F fill:#87CEEB
+
+    A[Upload Document\n(Upload to System)] -->|Extract| B[OCR Process\n(Text Extraction)]
+    B -->|Process| C[Data Enrichment\n(Info Extraction)]
+    C -->|Analyze| D[AI Analysis\n(Predictive Insights)]
+    D -->|Validate| E[Quality Check\n(Error Detection)]
+    E -->|Store| F[Final Output\n(Storage Solution)]
+
+    classDef default fill:#F5F5DC, stroke:#FF4500, stroke-width:2px;

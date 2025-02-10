@@ -1,0 +1,27 @@
+@startuml
+!define RECTANGLE_COLOR #87CEEB
+!define ARROW_COLOR #FF4500
+!define BACKGROUND_COLOR #F5F5DC
+
+skinparam backgroundColor BACKGROUND_COLOR
+skinparam sequenceArrowColor ARROW_COLOR
+skinparam rectangle {
+    BackgroundColor RECTANGLE_COLOR
+    BorderColor ARROW_COLOR
+}
+
+title AI-Powered Document Processing Pipeline
+
+rectangle "Document Input" as Input
+rectangle "Preprocessing" as Preprocess
+rectangle "AI Model Prediction" as AIModel
+rectangle "Postprocessing" as Postprocess
+rectangle "Output Generation" as Output
+
+Input -> Preprocess : "Retrieve Document"
+Preprocess -> AIModel : "Extract Features"
+AIModel -> Postprocess : "Classify & Annotate"
+Postprocess -> Output : "Construct Document"
+Output --> Input : "Output Document"
+
+@enduml

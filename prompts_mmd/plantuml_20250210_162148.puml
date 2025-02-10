@@ -1,0 +1,26 @@
+@startuml
+!define background_color #FFFFFF
+!define arrow_color #FF0000
+!define box_color #D0E2F2
+
+skinparam backgroundColor background_color
+skinparam arrowColor arrow_color
+skinparam rectangle {
+    BackgroundColor box_color
+    BorderColor black
+}
+
+title AI-Powered Document Processing Pipeline
+
+rectangle "Document Input" as input
+rectangle "Preprocessing" as preprocessing
+rectangle "AI Model" as ai_model
+rectangle "Postprocessing" as postprocessing
+rectangle "Output" as output
+
+input --> preprocessing : "Extract Text"
+preprocessing --> ai_model : "Process Data"
+ai_model --> postprocessing : "Analyze Data"
+postprocessing --> output : "Generate Report"
+
+@enduml

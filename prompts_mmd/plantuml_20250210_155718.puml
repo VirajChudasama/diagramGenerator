@@ -1,0 +1,22 @@
+@startuml
+skinparam backgroundColor #F5F5DC
+skinparam arrowColor #FF4500
+skinparam rectangle {
+    BackgroundColor #87CEEB
+    BorderColor #000000
+}
+
+rectangle "Document Input" as input
+rectangle "Preprocessing\n( OCR, Cleaning )" as preprocess
+rectangle "Feature Extraction" as featureExtract
+rectangle "AI Model\n( Training / Inference )" as aiModel
+rectangle "Postprocessing\n( Formatting, Validation )" as postprocess
+rectangle "Output Document" as output
+
+input -> preprocess : "Submit Document"
+preprocess -> featureExtract : "Extract Features"
+featureExtract -> aiModel : "Process Features"
+aiModel --> postprocess : "Process Result"
+postprocess -> output : "Generate Output Document"
+
+@enduml

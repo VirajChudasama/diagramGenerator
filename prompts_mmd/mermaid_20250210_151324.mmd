@@ -1,0 +1,16 @@
+flowchart TD
+    style A fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    style B fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    style C fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    style D fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    style E fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    style F fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+
+    classDef background fill:#F5F5DC;
+    class A,B,C,D,E,F background;
+
+    A[Input Document] -->|Extract Text| B[Text Extraction]
+    B -->|Natural Language Processing| C[NLP Analysis]
+    C -->|Data Structuring| D[Structured Data]
+    D -->|Generate Insights| E[Data Insights]
+    E -->|Export/Share| F[Output Document]
