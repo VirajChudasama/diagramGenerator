@@ -1,0 +1,32 @@
+@startuml AI_Powered_Document_Processing_Pipeline
+
+!define RECTANGLE class
+
+RECTANGLE Data_Ingestion {
+    + receive_document()
+    + validate_document()
+}
+
+RECTANGLE Data_Preprocessing {
+    + extract_text()
+    + clean_data()
+    + format_data()
+}
+
+RECTANGLE AI_Analysis {
+    + classify_document()
+    + extract_entities()
+    + generate_summary()
+}
+
+RECTANGLE Output_Generation {
+    + generate_report()
+    + save_to_database()
+    + send_notification()
+}
+
+Data_Ingestion -down-> Data_Preprocessing : "Transforms raw document"
+Data_Preprocessing -down-> AI_Analysis : "Prepares data for AI"
+AI_Analysis -down-> Output_Generation : "Creates results"
+
+@enduml

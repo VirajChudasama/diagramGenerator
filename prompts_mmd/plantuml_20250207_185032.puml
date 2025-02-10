@@ -1,0 +1,35 @@
+@startuml
+!define RECTANGLE_COLOR #87CEEB
+!define BACKGROUND_COLOR #F5F5DC
+!define ARROW_COLOR #FF4500
+
+skinparam backgroundColor BACKGROUND_COLOR
+skinparam component {
+    BackgroundColor RECTANGLE_COLOR
+    BorderColor black
+}
+
+actor User
+
+rectangle "Document Upload" as upload {
+}
+
+rectangle "Pre-processing\n(OCR, Data Cleaning)" as preprocessing {
+}
+
+rectangle "AI Model\n(Extraction, Classification)" as aiModel {
+}
+
+rectangle "Post-processing\n(Validation, Formatting)" as postprocessing {
+}
+
+rectangle "Output Storage\n(Database, Files)" as output {
+}
+
+User --> upload : "Upload Document"
+upload --> preprocessing : "Send Document"
+preprocessing --> aiModel : "Processed Data"
+aiModel --> postprocessing : "Extracted Data"
+postprocessing --> output : "Store Output"
+
+@enduml

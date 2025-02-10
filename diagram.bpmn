@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" 
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI" 
+             id="NetflixWorkflow" 
+             targetNamespace="http://www.example.org/NetflixWorkflow" 
+             exporter="Camunda Modeler" 
+             exporterVersion="4.11.0">
+
+  <process id="NetflixProcess" isExecutable="true">
+    <startEvent id="StartEvent" name="User Logs In"/>
+    <task id="BrowseContent" name="Browse Available Content"/>
+    <task id="SelectMovie" name="Select Movie/Show"/>
+    <exclusiveGateway id="ContentAvailable" name="Is Content Available?"/>
+    <task id="PlayContent" name="Play Content"/>
+    <task id="AddToWatchlist" name="Add to Watchlist"/>
+    <endEvent id="EndEvent" name="End Session"/>
+    
+    <sequenceFlow id="Flow1" sourceRef="StartEvent" targetRef="BrowseContent"/>
+    <sequenceFlow id="Flow2" sourceRef="BrowseContent" targetRef="SelectMovie"/>
+    <sequenceFlow id="Flow3" sourceRef="SelectMovie" targetRef="ContentAvailable"/>
+    <sequenceFlow id="Flow4" sourceRef="ContentAvailable" targetRef="PlayContent" name="Yes"/>
+    <sequenceFlow id="Flow5" sourceRef="ContentAvailable" targetRef="AddToWatchlist" name="No"/>
+    <sequenceFlow id="Flow6" sourceRef="PlayContent" targetRef="EndEvent"/>
+    <sequenceFlow id="Flow7" sourceRef="AddToWatchlist" targetRef="EndEvent"/>
+  </process>
+
+  <bpmndi:BPMNDiagram id="BPMNDiagram_NetflixWorkflow">
+    <bpmndi:BPMNPlane bpmnElement="NetflixProcess">
+      <bpmndi:BPMNShape id="StartEvent_di" bpmnElement="StartEvent">
+        <dc:Bounds x="100" y="150" width="30" height="30"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BrowseContent_di" bpmnElement="BrowseContent">
+        <dc:Bounds x="170" y="150" width="100" height="40"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SelectMovie_di" bpmnElement="SelectMovie">
+        <dc:Bounds x="300" y="150" width="100" height="40"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ContentAvailable_di" bpmnElement="ContentAvailable">
+        <dc:Bounds x="430" y="140" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="PlayContent_di" bpmnElement="PlayContent">
+        <dc:Bounds x="530" y="150" width="100" height="40"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="AddToWatchlist_di" bpmnElement="AddToWatchlist">
+        <dc:Bounds x="430" y="230" width="100" height="40"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_di" bpmnElement="EndEvent">
+        <dc:Bounds x="650" y="150" width="30" height="30"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow1_di" bpmnElement="Flow1">
+        <di:waypoint x="130" y="165"/>
+        <di:waypoint x="170" y="165"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow2_di" bpmnElement="Flow2">
+        <di:waypoint x="270" y="165"/>
+        <di:waypoint x="300" y="165"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow3_di" bpmnElement="Flow3">
+        <di:waypoint x="400" y="165"/>
+        <di:waypoint x="430" y="165"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow4_di" bpmnElement="Flow4">
+        <di:waypoint x="480" y="165"/>
+        <di:waypoint x="530" y="165"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow5_di" bpmnElement="Flow5">
+        <di:waypoint x="460" y="190"/>
+        <di:waypoint x="460" y="230"/>
+        <di:waypoint x="430" y="230"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow6_di" bpmnElement="Flow6">
+        <di:waypoint x="630" y="165"/>
+        <di:waypoint x="650" y="165"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow7_di" bpmnElement="Flow7">
+        <di:waypoint x="530" y="190"/>
+        <di:waypoint x="530" y="230"/>
+        <di:waypoint x="460" y="230"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

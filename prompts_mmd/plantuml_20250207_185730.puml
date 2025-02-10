@@ -1,0 +1,22 @@
+@startuml
+skinparam backgroundColor #F5F5DC
+skinparam arrowColor #FF4500
+skinparam component {
+    BackgroundColor #87CEEB
+    BorderColor #000000
+}
+
+package "Document Processing Pipeline" {
+    [Input Document] as InputDocument
+    [Preprocessing] as Preprocessing
+    [AI Analysis] as AIAnalysis
+    [Post-processing] as PostProcessing
+    [Output Document] as OutputDocument
+
+    InputDocument --> Preprocessing
+    Preprocessing --> AIAnalysis
+    AIAnalysis --> PostProcessing
+    PostProcessing --> OutputDocument
+}
+
+@enduml

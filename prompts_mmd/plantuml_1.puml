@@ -1,0 +1,22 @@
+@startuml
+title AI-Powered Document Processing Pipeline
+
+package "Document Processing Pipeline" {
+    
+    [Document Ingestion] as ingestion
+    [Preprocessing] as preprocessing
+    [Data Extraction] as extraction
+    [Data Validation] as validation
+    [Data Storage] as storage
+    [Data Analysis] as analysis
+    
+    ingestion --> preprocessing : Ingest documents
+    preprocessing --> extraction : Clean & structure data
+    extraction --> validation : Extract structured data
+    validation --> storage : Validate & store data
+    storage --> analysis : Retrieve for analysis
+    analysis --> preprocessing : Feedback loop for improvement
+    
+}
+
+@enduml

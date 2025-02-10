@@ -1,0 +1,18 @@
+flowchart TD
+    style background fill:#F5F5DC
+    style A fill:#87CEEB
+    style B fill:#87CEEB
+    style C fill:#87CEEB
+    style D fill:#87CEEB
+    style E fill:#87CEEB
+    
+    A[Upload Document\n(PDF, DOCX, etc.)] -->|Extract Text| B[Text Extraction\n(Optical Character Recognition)]
+    B -->|Pre-process| C[Data Preprocessing\n(Cleaning, Formatting)]
+    C -->|Analyze| D[AI Model\n(NLP, ML)]
+    D -->|Generate Output| E[Store/Output Document\n(Structured Data)]
+    
+    classDef customArrow stroke:#FF4500,stroke-width:2px;
+    linkStyle 0 stroke:#FF4500,stroke-width:2px;
+    linkStyle 1 stroke:#FF4500,stroke-width:2px;
+    linkStyle 2 stroke:#FF4500,stroke-width:2px;
+    linkStyle 3 stroke:#FF4500,stroke-width:2px;

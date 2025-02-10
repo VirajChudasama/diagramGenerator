@@ -1,0 +1,25 @@
+flowchart TD
+    A[Document Input]:::box -->|Extract| B[Preprocessing]:::box
+    B -->|Tokenization| C[Text Analysis]:::box
+    C -->|Entity Recognition| D[Feature Extraction]:::box
+    D -->|Classification| E[AI Model]:::box
+    E -->|Output Prediction| F[Results Storage]:::box
+
+    classDef box fill:yellow;
+    classDef background fill:lightgray;
+    classDef arrow stroke:blue,stroke-width:2px;
+
+    A:::box
+    B:::box
+    C:::box
+    D:::box
+    E:::box
+    F:::box
+    
+    %% Add background color
+    style A fill:lightgray
+    style B fill:lightgray
+    style C fill:lightgray
+    style D fill:lightgray
+    style E fill:lightgray
+    style F fill:lightgray

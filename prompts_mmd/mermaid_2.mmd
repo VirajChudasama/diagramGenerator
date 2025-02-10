@@ -1,0 +1,17 @@
+flowchart TD
+    A[Start] --> B[Input Document]
+    B --> C{Preprocessing}
+    C -->|Text Extraction| D[Extracted Text]
+    C -->|Image Processing| E[Processed Images]
+    D --> F{AI Model}
+    E --> F
+    F -->|Text Analysis| G[Analyzed Text]
+    F -->|Image Recognition| H[Recognized Images]
+    G --> I[Data Enrichment]
+    H --> I
+    I --> J{Output Generation}
+    J -->|Structured Data| K[Structured Output]
+    J -->|Reports| L[Generated Reports]
+    K --> M[Storage]
+    L --> M
+    M --> N[End]

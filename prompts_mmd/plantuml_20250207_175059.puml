@@ -1,0 +1,23 @@
+@startuml
+skinparam backgroundColor #F5F5DC
+skinparam arrowColor #FF4500
+skinparam component {
+    BackgroundColor #87CEEB
+    BorderColor #000000
+}
+
+package "Document Processing Pipeline" {
+    [Document Ingestion] as DI
+    [Text Extraction] as TE
+    [Data Validation] as DV
+    [AI Processing] as AI
+    [Output Generation] as OG
+
+    DI --> TE : "Ingest Document"
+    TE --> DV : "Extracted Text"
+    DV --> AI : "Validated Data"
+    AI --> OG : "Processed Output"
+    OG --> DI : "Feedback Loop"
+}
+
+@enduml

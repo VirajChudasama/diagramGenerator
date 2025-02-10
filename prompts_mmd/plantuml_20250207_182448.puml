@@ -1,0 +1,20 @@
+@startuml
+skinparam backgroundColor #F5F5DC
+skinparam ArrowColor #FF4500
+skinparam rectangle {
+    BackgroundColor #87CEEB
+    BorderColor #000000
+}
+
+rectangle "Input Documents" as Input
+rectangle "Preprocessing" as Preprocess
+rectangle "AI Model" as AIModel
+rectangle "Postprocessing" as Postprocess
+rectangle "Output Documents" as Output
+
+Input --> Preprocess : "Extract Text"
+Preprocess --> AIModel : "Process Text"
+AIModel --> Postprocess : "Analyze & Annotate"
+Postprocess --> Output : "Generate Final Document"
+
+@enduml

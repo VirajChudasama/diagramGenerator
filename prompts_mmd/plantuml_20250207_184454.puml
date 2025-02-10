@@ -1,0 +1,25 @@
+@startuml
+skinparam backgroundColor #F5F5DC
+skinparam arrowColor #FF4500
+skinparam component {
+    BackgroundColor #87CEEB
+    BorderColor #000000
+}
+skinparam rectangle {
+    BackgroundColor #87CEEB
+    BorderColor #000000
+}
+
+rectangle "Document Input" as Input
+rectangle "Preprocessing" as Preprocess
+rectangle "Text Extraction" as Extract
+rectangle "Data Validation" as Validate
+rectangle "AI Model Processing" as Process
+rectangle "Output Generation" as Output
+
+Input -[#FF4500]-> Preprocess : "Sends documents"
+Preprocess -[#FF4500]-> Extract : "Prepares data"
+Extract -[#FF4500]-> Validate : "Extracted text"
+Validate -[#FF4500]-> Process : "Validated data"
+Process -[#FF4500]-> Output : "Generates output"
+@enduml

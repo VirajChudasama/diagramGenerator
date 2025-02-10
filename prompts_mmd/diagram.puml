@@ -1,0 +1,40 @@
+@startuml
+!define RECTANGLE class
+
+title AI-Powered Document Processing Pipeline
+
+RECTANGLE DocumentIngestion {
+    + ingestDocuments()
+    + validateDocuments()
+}
+
+RECTANGLE Preprocessing {
+    + cleanText()
+    + extractMetadata()
+    + performOCR()
+}
+
+RECTANGLE AIProcessing {
+    + analyzeContent()
+    + classifyDocuments()
+    + extractEntities()
+}
+
+RECTANGLE OutputGeneration {
+    + generateReport()
+    + storeResults()
+    + notifyUsers()
+}
+
+RECTANGLE UserInterface {
+    + displayResults()
+    + getUserFeedback()
+}
+
+DocumentIngestion --> Preprocessing : "Ingest Documents"
+Preprocessing --> AIProcessing : "Preprocessed Documents"
+AIProcessing --> OutputGeneration : "Processed Results"
+OutputGeneration --> UserInterface : "Generate User Reports"
+UserInterface --> AIProcessing : "User Feedback"
+
+@enduml
