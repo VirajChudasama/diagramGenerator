@@ -55,7 +55,7 @@ def generate_mermaid_diagram(background_color, arrow_color, box_color):
     mmd_path = MMD_DIR / f"mermaid_{timestamp}.mmd"
     img_path = PNG_DIR / f"mermaid_{timestamp}.png"
 
-    mermaid_prompt = (f"Generate a valid Mermaid diagram for an AI-powered document processing pipeline. "
+    mermaid_prompt = (f"Generate a detailed mermaid syntax diagram for the Netflix streaming flow, illustrating the complete process from user interaction to content delivery and playback "
                       f"Use background color `{background_color}`, arrow color `{arrow_color}`, and box color `{box_color}`. "
                       "Ensure the diagram is **fully correct**, avoiding invalid syntax. "
                       "Use `\\n` for multi-line text (no `<br>`). Format it as a **flowchart** and apply proper styling.")
@@ -77,9 +77,9 @@ def generate_plantuml_diagram(background_color, arrow_color, box_color):
     puml_path = MMD_DIR / f"plantuml_{timestamp}.puml"
     img_path = PNG_DIR / f"plantuml_{timestamp}.png"
 
-    plantuml_prompt = (f"Generate a valid PlantUML diagram for an AI-powered document processing pipeline. "
+    plantuml_prompt = (f"Generate a detailed PlantUML diagram for the Netflix streaming flow, illustrating the complete process from user interaction to content delivery and playback. "
                        f"Use background color `{background_color}`, arrow color `{arrow_color}`, and box color `{box_color}`. "
-                       "Ensure the syntax is fully correct and follows standard PlantUML conventions. Apply styling to match the colors.")
+                       "Ensure the syntax is fully correct and follows standard PlantUML conventions. Apply styling to match the colors.Please generate the diagram in a potrait format")
 
     response = generate_diagram(plantuml_prompt)
 

@@ -1,0 +1,23 @@
+flowchart TD
+    style A fill:#87CEEB;
+    style B fill:#87CEEB;
+    style C fill:#87CEEB;
+    style D fill:#87CEEB;
+    style E fill:#87CEEB;
+    style F fill:#87CEEB;
+    style G fill:#87CEEB;
+    style H fill:#87CEEB;
+    style I fill:#87CEEB;
+
+    A[Start: Document Upload] -->|Upload Document| B[Preprocessing]
+    B -->|Text Extraction| C[Natural Language Processing]
+    C -->|Entity Recognition| D[Classification]
+    D -->|Data Structuring| E[Output Generation]
+    E -->|Store Results| F[Database]
+    F -->|Results Retrieval| G[User Interface]
+    G -->|Display Results| H[User Review]
+    H -->|Feedback Loop| I[Model Improvement]
+    I --> B
+
+    classDef background fill:#F5F5DC;
+    class A,B,C,D,E,F,G,H,I background;

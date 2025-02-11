@@ -1,0 +1,84 @@
+@startuml
+skinparam backgroundColor #E6E6FA
+skinparam componentBackgroundColor #FFD700
+skinparam componentBorderColor #228B22
+skinparam componentFontColor black
+skinparam arrowColor #228B22
+
+rectangle "User Interaction &\nProduct Browsing" as UserInteraction #ADD8E6 {
+    component "Web/Mobile App" as App
+    component "Product Search & Filter" as SearchFilter
+    component "Product Details" as ProductDetails
+    component "Shopping Cart & Wishlist" as Cart
+}
+
+rectangle "Shopping Cart & Checkout" as ShoppingCart #90EE90 {
+    component "Cart Management" as CartManagement
+    component "Secure Checkout" as SecureCheckout
+    component "Shipping & Delivery" as Shipping
+    component "Order Summary" as OrderSummary
+}
+
+rectangle "Payment Processing" as Payment #FFFFE0 {
+    component "Payment Options" as PaymentOptions
+    component "Payment Gateway" as PaymentGateway
+    component "Payment Confirmation" as PaymentConfirmation
+}
+
+rectangle "Order Management &\nFulfillment" as OrderManagement #FFA07A {
+    component "Order Status Tracking" as OrderStatus
+    component "Inventory Check" as InventoryCheck
+    component "Third-Party Logistics" as Logistics
+    component "Order Notifications" as Notifications
+}
+
+rectangle "Customer Support & Returns" as CustomerSupport #DCDCDC {
+    component "Helpdesk" as Helpdesk
+    component "Return & Refund Process" as Returns
+    component "Feedback System" as FeedbackSystem
+}
+
+rectangle "Admin & Analytics Dashboard" as AdminAnalytics #FFCCCB {
+    component "Sales Analytics" as SalesAnalytics
+    component "Customer Behavior Tracking" as CustomerBehavior
+    component "Order History & Reports" as OrderReports
+    component "Role-based Access Control" as RoleBasedAccess
+}
+
+' User Interaction flow
+App --> SearchFilter : Browse Products
+SearchFilter --> ProductDetails : View Details
+ProductDetails --> Cart : Add to Cart
+Cart --> CartManagement : Manage Cart
+Cart --> SecureCheckout : Proceed to Checkout
+
+' Shopping Cart & Checkout flow
+CartManagement --> Shipping : Select Shipping Address
+SecureCheckout --> OrderSummary : Generate Order Summary
+OrderSummary --> PaymentOptions : Choose Payment Method
+
+' Payment Processing flow
+PaymentOptions --> PaymentGateway : Process Payment
+PaymentGateway --> PaymentConfirmation : Payment Successful
+PaymentConfirmation --> OrderStatus : Confirm Order
+
+' Order Management & Fulfillment flow
+OrderStatus --> InventoryCheck : Check Inventory
+InventoryCheck --> Logistics : Allocate Warehouse
+Logistics --> Notifications : Send Shipping Details
+Notifications --> UserInteraction : Notify User
+
+' Customer Support flow
+UserInteraction --> Helpdesk : Contact for Support
+Helpdesk --> Returns : Process Return Requests
+Returns --> FeedbackSystem : Submit Feedback
+
+' Admin & Analytics flow
+AdminAnalytics --> SalesAnalytics : View Sales Data
+AdminAnalytics --> CustomerBehavior : Track User Behavior
+AdminAnalytics --> OrderReports : Generate Reports
+
+note right of App : Users access via Web/Mobile
+note bottom of CartManagement : Update Quantity/Remove Items
+note bottom of OrderStatus : Status: Pending, Processing, Shipped, Delivered, Canceled
+@enduml

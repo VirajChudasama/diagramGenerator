@@ -1,0 +1,86 @@
+@startuml
+skinparam backgroundColor #E6E6FA
+skinparam component {
+    BackgroundColor #FFD700
+    BorderColor #228B22
+}
+
+package "User Interaction" {
+    skinparam component {
+        BackgroundColor #ADD8E6
+    }
+    [User Access via Web/Mobile App] as UA
+    [Browse Products] as BP
+    [View Product Details] as VPD
+    [Manage Cart & Wishlists] as MC
+}
+
+package "Shopping Cart & Checkout" {
+    skinparam component {
+        BackgroundColor #90EE90
+    }
+    [Cart Management] as CM
+    [Checkout Process] as CP
+    [Shipping Address Selection] as SAS
+    [Order Summary] as OS
+}
+
+package "Payment Processing" {
+    skinparam component {
+        BackgroundColor #FFFF99
+    }
+    [Payment Options] as PO
+    [Secure Payment Gateway] as SPG
+    [Payment Confirmation] as PC
+}
+
+package "Order Management & Fulfillment" {
+    skinparam component {
+        BackgroundColor #FFA500
+    }
+    [Order Status Tracking] as OST
+    [Inventory Check & Allocation] as ICA
+    [Third-Party Logistics Integration] as TPLI
+    [Notification System] as NS
+}
+
+package "Customer Support & Returns" {
+    skinparam component {
+        BackgroundColor #D3D3D3
+    }
+    [Helpdesk Support] as HD
+    [Return & Refund Process] as RRP
+    [Feedback System] as FS
+}
+
+package "Admin & Analytics Dashboard" {
+    skinparam component {
+        BackgroundColor #FF6347
+    }
+    [Real-time Sales Analytics] as RSA
+    [Customer Behavior Tracking] as CBT
+    [Order History Reports] as OHR
+    [Role-based Access Control] as RAC
+}
+
+UA --> BP : Browse Products
+BP --> VPD : View Product Details
+VPD --> MC : Manage Cart & Wishlists
+MC --> CM : Cart Management
+CM --> CP : Checkout Process
+CP --> SAS : Shipping Address Selection
+SAS --> OS : Order Summary
+OS --> PO : Payment Options
+PO --> SPG : Secure Payment Gateway
+SPG --> PC : Payment Confirmation
+PC --> OST : Order Status Tracking
+OST --> ICA : Inventory Check & Allocation
+ICA --> TPLI : Third-Party Logistics Integration
+TPLI --> NS : Notification System
+HD --> RRP : Return & Refund Process
+RRP --> FS : Feedback System
+RSA --> CBT : Customer Behavior Tracking
+CBT --> OHR : Order History Reports
+RAC --> [Admin & Staff Roles] 
+
+@enduml

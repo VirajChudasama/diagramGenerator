@@ -1,0 +1,103 @@
+@startuml
+skinparam backgroundColor #E6E6FA
+
+' Define colors for different modules
+skinparam class {
+    BackgroundColor #FFD700
+}
+
+class UserInteraction {
+    :Web App;
+    :Mobile App;
+    :Browse products;
+    :Search & Filters;
+    :Product details;
+    :Add to cart;
+    :Manage wishlist;
+}
+
+class ShoppingCartCheckout {
+    :Manage cart;
+    :Update quantity;
+    :Remove items;
+    :Apply discount codes;
+    :Secure checkout;
+    :Guest/User authentication;
+    :Shipping address;
+    :Delivery method;
+    :Order summary;
+}
+
+class PaymentProcessing {
+    :Payment options;
+    :Secure gateway;
+    :Fraud detection;
+    :Confirmation & order reference;
+}
+
+class OrderManagement {
+    :Order status tracking;
+    :Inventory check;
+    :Warehouse allocation;
+    :Third-party logistics;
+    :Notification system;
+}
+
+class CustomerSupport {
+    :Helpdesk;
+    :Live chat;
+    :Email support;
+    :FAQs;
+    :Return & refund;
+    :Feedback system;
+}
+
+class AdminAnalytics {
+    :Sales analytics;
+    :Inventory management;
+    :Customer behavior tracking;
+    :Order history;
+    :Role-based access;
+}
+
+' Set box colors for each module
+note top of UserInteraction
+    << User Interaction >>
+end note
+
+note top of ShoppingCartCheckout
+    << Shopping Cart & Checkout >>
+end note
+
+note top of PaymentProcessing
+    << Payment Processing >>
+end note
+
+note top of OrderManagement
+    << Order Management >>
+end note
+
+note top of CustomerSupport
+    << Customer Support >>
+end note
+
+note top of AdminAnalytics
+    << Admin & Analytics >>
+end note
+
+
+' Data flow arrows
+UserInteraction -down-> ShoppingCartCheckout : Browse products, Add to cart
+ShoppingCartCheckout -down-> PaymentProcessing : Proceed to checkout
+PaymentProcessing -down-> OrderManagement : Confirm payment
+OrderManagement -down-> CustomerSupport : Order updates, Returns
+AdminAnalytics -down-> OrderManagement : Inventory checks, Sales reports
+
+' More flow arrows for detailed processes
+ShoppingCartCheckout --> ShoppingCartCheckout : Update cart state
+PaymentProcessing --> PaymentProcessing : Validate payment
+OrderManagement --> OrderManagement : Update order status
+CustomerSupport --> CustomerSupport : Query handling, Feedback submission
+AdminAnalytics --> AdminAnalytics : Performance analytics
+
+@enduml

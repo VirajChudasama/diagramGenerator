@@ -1,0 +1,16 @@
+flowchart TD
+    A[Start Document Processing]:::box --> B{Document Type}:::box
+    B -->|Invoice| C[Extract Data from Invoice]:::box
+    B -->|Receipt| D[Extract Data from Receipt]:::box
+    B -->|Report| E[Extract Data from Report]:::box
+    C --> F[Data Validation]:::box
+    D --> F
+    E --> F
+    F --> G[Data Enrichment]:::box
+    G --> H[Store Processed Data]:::box
+    H --> I[Generate Reports]:::box
+    I --> J[End Process]:::box
+
+    classDef box fill:#87CEEB,stroke:#FF4500,stroke-width:2px;
+    classDef background fill:#F5F5DC;
+    class A,B,C,D,E,F,G,H,I,J background;

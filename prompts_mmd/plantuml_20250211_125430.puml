@@ -1,0 +1,87 @@
+@startuml
+skinparam backgroundColor #E6E6FA
+skinparam arrowColor #228B22
+skinparam packageStyle rectangle
+
+' Define colors for different modules
+!define USER_INTERACTION_LIGHT_BLUE #ADD8E6
+!define CHECKOUT_LIGHT_GREEN #90EE90
+!define PAYMENT_LIGHT_YELLOW #FFFFE0
+!define ORDER_MANAGEMENT_LIGHT_ORANGE #FFCC99
+!define CUSTOMER_SUPPORT_LIGHT_GREY #D3D3D3
+!define ADMIN_ANALYTICS_LIGHT_RED #FFCCCB
+
+package "User Interaction & Product Browsing" {
+    skinparam backgroundColor USER_INTERACTION_LIGHT_BLUE
+    rectangle "Web/Mobile App" as UserApp
+    rectangle "Product Search & Filtering" as Search
+    rectangle "Product Details & Reviews" as ProductDetails
+    rectangle "Shopping Cart & Wishlist Management" as CartManagement
+
+    UserApp --> Search : "Access Platform"
+    Search --> ProductDetails : "Browse Products"
+    ProductDetails --> CartManagement : "Add to Cart"
+}
+    
+package "Shopping Cart & Checkout" {
+    skinparam backgroundColor CHECKOUT_LIGHT_GREEN
+    rectangle "Cart Management" as Cart
+    rectangle "Checkout Process" as Checkout
+    rectangle "Shipping Address & Delivery Method" as Shipping
+    rectangle "Order Summary" as Summary
+
+    CartManagement --> Cart : "Manage Cart"
+    Cart --> Checkout : "Proceed to Checkout"
+    Checkout --> Shipping : "Select Shipping Options"
+    Shipping --> Summary : "Review Order Summary"
+}
+
+package "Payment Processing" {
+    skinparam backgroundColor PAYMENT_LIGHT_YELLOW
+    rectangle "Payment Options" as PaymentOptions
+    rectangle "Payment Gateway" as PaymentGateway
+    rectangle "Payment Confirmation" as PaymentConfirmation
+
+    Summary --> PaymentOptions : "Choose Payment Method"
+    PaymentOptions --> PaymentGateway : "Process Payment"
+    PaymentGateway --> PaymentConfirmation : "Confirm Payment"
+}
+
+package "Order Management & Fulfillment" {
+    skinparam backgroundColor ORDER_MANAGEMENT_LIGHT_ORANGE
+    rectangle "Order Status Tracking" as OrderStatus
+    rectangle "Inventory Check" as Inventory
+    rectangle "Third-party Logistics" as Logistics
+    rectangle "Notification System" as Notification
+
+    PaymentConfirmation --> OrderStatus : "Order Created"
+    OrderStatus --> Inventory : "Check Inventory"
+    Inventory --> Logistics : "Allocate for Packaging"
+    Logistics --> Notification : "Generate Shipment Tracking"
+    Notification --> Customer : "Send Order Updates"
+}
+
+package "Customer Support & Returns" {
+    skinparam backgroundColor CUSTOMER_SUPPORT_LIGHT_GREY
+    rectangle "Helpdesk" as Helpdesk
+    rectangle "Return & Refund Process" as Returns
+    rectangle "Feedback System" as Feedback
+
+    Customer --> Helpdesk : "Contact Support"
+    Helpdesk --> Returns : "Initiate Returns"
+    Returns --> Feedback : "Process Feedback"
+}
+
+package "Admin & Analytics Dashboard" {
+    skinparam backgroundColor ADMIN_ANALYTICS_LIGHT_RED
+    rectangle "Sales Analytics & Inventory" as Analytics
+    rectangle "Customer Behavior Tracking" as CustomerTracking
+    rectangle "Order History & Reports" as OrderHistory
+    rectangle "Role-based Access Control" as RoleAccess
+
+    Analytics --> CustomerTracking : "Analyze Customer Data"
+    CustomerTracking --> OrderHistory : "Generate Reports"
+    OrderHistory --> RoleAccess : "Access Control for Staff"
+}
+
+@enduml

@@ -1,0 +1,74 @@
+@startuml
+skinparam backgroundColor #E6E6FA
+skinparam rectangle {
+    BackgroundColor #FFD700
+    BorderColor #228B22
+}
+
+rectangle "User Interaction & Product Browsing" as UI #ADD8E6 {
+    rectangle "Web/Mobile App" as App
+    rectangle "Browse Products" as Browse
+    rectangle "Manage Wishlists" as Wishlist
+    rectangle "View Product Details" as Details
+}
+
+rectangle "Shopping Cart & Checkout" as Cart #90EE90 {
+    rectangle "Manage Cart" as CartMgmt
+    rectangle "Secure Checkout" as Checkout
+    rectangle "Order Summary" as Summary
+}
+
+rectangle "Payment Processing" as Payment #FFFFE0 {
+    rectangle "Multiple Payment Options" as PaymentOptions
+    rectangle "Secure Payment Gateway" as Gateway
+    rectangle "Payment Confirmation" as Confirmation
+}
+
+rectangle "Order Management & Fulfillment" as OrderMgmt #FFCC99 {
+    rectangle "Order Status Tracking" as StatusTracking
+    rectangle "Inventory Check" as Inventory
+    rectangle "Third-Party Logistics Integration" as Logistics
+    rectangle "Notification System" as Notification
+}
+
+rectangle "Customer Support & Returns" as Support #DCDCDC {
+    rectangle "Helpdesk" as Helpdesk
+    rectangle "Returns & Refunds" as Returns
+    rectangle "Feedback System" as Feedback
+}
+
+rectangle "Admin & Analytics Dashboard" as Admin #FFCCCB {
+    rectangle "Sales Analytics" as Analytics
+    rectangle "Customer Behavior Tracking" as Behavior
+    rectangle "Order History & Revenue Reports" as Reports
+    rectangle "Role-Based Access Control" as AccessControl
+}
+
+' Data Flow Arrows
+App --> Browse : "Access Platform"
+Browse --> Details : "View Details"
+Details --> CartMgmt : "Add to Cart"
+CartMgmt --> Wishlist : "Manage Wishlist"
+
+CartMgmt --> Checkout : "Proceed to Checkout"
+Checkout --> Summary : "View Order Summary"
+
+Summary --> PaymentOptions : "Select Payment Method"
+PaymentOptions --> Gateway : "Process Payment"
+Gateway --> Confirmation : "Payment Successful"
+
+Confirmation --> StatusTracking : "Confirm Order"
+StatusTracking --> Inventory : "Check Inventory"
+Inventory --> Logistics : "Allocate Warehouse"
+Logistics --> Notification : "Track Shipment"
+Notification --> Helpdesk : "Notify Customer"
+
+Helpdesk --> Returns : "Process Returns"
+Returns --> Feedback : "Submit Feedback"
+
+Admin --> Analytics : "View Sales Data"
+Admin --> Behavior : "Track User Behavior"
+Admin --> Reports : "Generate Reports"
+Admin --> AccessControl : "Manage User Roles"
+
+@enduml

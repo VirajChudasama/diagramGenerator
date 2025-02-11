@@ -1,0 +1,107 @@
+@startuml E-commerce_Order_Processing_System
+
+skinparam backgroundColor #E6E6FA
+skinparam component {
+    BackgroundColor #FFD700
+    BorderColor #228B22
+}
+
+' User Interaction & Product Browsing
+package "User Interaction & Product Browsing" {
+    skinparam component {
+        BackgroundColor #ADD8E6
+    }
+    
+    [User Access] as UA
+    [Product Browsing] as PB
+    [Product Details] as PD
+    [Cart Management] as CM
+    [Wishlist Management] as WM
+    
+    UA --> PB : Browse Products
+    PB --> PD : View Details
+    PD --> CM : Add to Cart
+    PD --> WM : Add to Wishlist
+}
+
+' Shopping Cart & Checkout
+package "Shopping Cart & Checkout" {
+    skinparam component {
+        BackgroundColor #90EE90
+    }
+    
+    [Cart Management] as SCM
+    [Checkout Process] as CP
+    [Shipping Address] as SA
+    [Order Summary] as OS
+    
+    CM --> SCM : Manage Cart
+    SCM --> CP : Proceed to Checkout
+    CP --> SA : Select Shipping
+    CP --> OS : Order Summary
+}
+
+' Payment Processing
+package "Payment Processing" {
+    skinparam component {
+        BackgroundColor #FFFACD
+    }
+    
+    [Payment Options] as PO
+    [Payment Gateway] as PG
+    [Order Confirmation] as OC
+    
+    OS --> PO : Select Payment Method
+    PO --> PG : Process Payment
+    PG --> OC : Confirm Order
+}
+
+' Order Management & Fulfillment
+package "Order Management & Fulfillment" {
+    skinparam component {
+        BackgroundColor #FFCC99
+    }
+    
+    [Order Status Tracking] as OST
+    [Inventory Check] as IC
+    [Logistics Integration] as LI
+    [Notifications] as N
+    
+    OC --> OST : Track Order
+    OST --> IC : Check Inventory
+    IC --> LI : Allocate Warehouse
+    LI --> N : Update Notifications
+}
+
+' Customer Support & Returns
+package "Customer Support & Returns" {
+    skinparam component {
+        BackgroundColor #D3D3D3
+    }
+    
+    [Helpdesk] as HD
+    [Return Process] as RP
+    [Feedback System] as FS
+    
+    N --> HD : Raise Support Ticket
+    HD --> RP : Initiate Return
+    RP --> FS : Submit Feedback
+}
+
+' Admin & Analytics Dashboard
+package "Admin & Analytics" {
+    skinparam component {
+        BackgroundColor #F08080
+    }
+    
+    [Sales Analytics] as SA
+    [Customer Behavior Tracking] as CBT
+    [Order History] as OH
+    [Role-Based Access Control] as RBAC
+    
+    SA --> CBT : Analyze Customer Data
+    SA --> OH : View Order History
+    RBAC --> UH : Manage Access
+}
+
+@enduml

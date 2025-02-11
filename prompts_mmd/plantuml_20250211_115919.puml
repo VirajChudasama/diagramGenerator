@@ -1,0 +1,53 @@
+@startuml
+!define RECTANGLE_COLOR #87CEEB
+!define ARROW_COLOR #FF4500
+!define BACKGROUND_COLOR #F5F5DC
+
+skinparam backgroundColor BACKGROUND_COLOR
+skinparam componentStyle rectangle
+
+skinparam rectangle {
+    BackgroundColor RECTANGLE_COLOR
+    BorderColor black
+}
+
+skinparam arrow {
+    Color ARROW_COLOR
+}
+
+title Netflix Streaming Flow
+
+package "User Interaction" {
+    [User Device] as UserDevice
+    [Netflix App] as NetflixApp
+}
+
+package "Content Delivery Network" {
+    [Content Delivery Server] as ContentServer
+    [Content Storage] as ContentStorage
+}
+
+package "Streaming Process" {
+    [Content Encoding] as ContentEncoding
+    [User Request Handling] as RequestHandling
+}
+
+package "Playback Process" {
+    [Video Player] as VideoPlayer
+    [User Interface] as UserInterface
+}
+
+UserDevice -> NetflixApp : Open App
+NetflixApp -> UserDevice : Display Content Catalog
+UserDevice -> NetflixApp : Select Content
+NetflixApp -> RequestHandling : Forward Request
+RequestHandling -> ContentServer : Fetch Content
+ContentServer -> ContentStorage : Retrieve Content
+ContentStorage -> ContentServer : Send Content
+ContentServer -> RequestHandling : Provide Content
+RequestHandling -> NetflixApp : Return Content
+NetflixApp -> UserDevice : Stream Content
+UserDevice -> VideoPlayer : Launch Video Player
+VideoPlayer -> UserDevice : Playback Video
+
+@enduml

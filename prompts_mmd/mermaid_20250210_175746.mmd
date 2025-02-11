@@ -1,0 +1,16 @@
+flowchart TD
+    style background fill:#F5F5DC
+    style arrow stroke:#FF4500
+    style box fill:#87CEEB
+
+    A[Upload Document] -->|Send Document| B[Preprocessing]
+    B -->|Extract Text| C[Text Analysis]
+    C -->|Generate Insights| D[AI Model Processing]
+    D -->|Return Results| E[Review and Validation]
+    E -->|Approve| F[Storage]
+    E -->|Reject| G[Reprocessing]
+    G -->|Edit Document| B
+
+    classDef background fill:#F5F5DC;
+    classDef arrow stroke:#FF4500;
+    classDef box fill:#87CEEB;

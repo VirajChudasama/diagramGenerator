@@ -1,0 +1,8 @@
+%%{init: {'themeVariables': {'background': '#F5F5DC', 'arrowColor': '#FF4500', 'boxFill': '#87CEEB}}}%%
+flowchart TD
+    A[Input Document] -->|Upload| B[Preprocessing\n - Scanning\n - OCR]
+    B --> C[Data Extraction\n - Named Entity Recognition\n - Data Structuring]
+    C --> D[Data Validation\n - Integrity Check\n - Format Validation]
+    D --> E[Store in Database]
+    E --> F[Data Analysis\n - Insights Generation\n - Reporting]
+    F --> G[Output Results\n - Dashboard\n - Alerts]

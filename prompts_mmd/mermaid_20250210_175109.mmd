@@ -1,0 +1,25 @@
+flowchart TD
+    style A fill:#87CEEB
+    style B fill:#87CEEB
+    style C fill:#87CEEB
+    style D fill:#87CEEB
+    style E fill:#87CEEB
+    style F fill:#87CEEB
+    style G fill:#87CEEB
+    style H fill:#87CEEB
+    style I fill:#87CEEB
+    style J fill:#87CEEB
+
+    A[Start: Document Submission] -->|Upload Document| B[Preprocessing\n(Noise Reduction,\nText Extraction)]
+    B -->|Extracted Text| C[Text Analysis\n(NLP Techniques)]
+    C -->|Analyzed Data| D[Data Structuring\n(Database Insertion)]
+    D -->|Structured Data| E[AI Model\nInference]
+    E -->|Inference Results| F[Result Storage\n(Database)]
+    F -->|Stored Results| G[Output Generation\n(Reports, Summaries)]
+    G -->|Generated Output| H[User Notification]
+    H -->|Notification Sent| I[End: Process Complete]
+    I -->|Feedback Gathering| J[User Feedback\n(Further Improvements)]
+    
+    classDef background fill:#F5F5DC;
+    class A,B,C,D,E,F,G,H,I,J background;
+    linkStyle default stroke:#FF4500;

@@ -1,0 +1,24 @@
+@startuml
+skinparam backgroundColor #F5F5DC
+skinparam arrowColor #FF4500
+skinparam component {
+    BackgroundColor #87CEEB
+    BorderColor #3B3B3B
+}
+
+package "Document Processing Pipeline" {
+    [Input Documents] as InputDocs
+    [Preprocessing] as Preprocess
+    [Optical Character Recognition (OCR)] as OCR
+    [Text Analysis] as TextAnalysis
+    [Data Validation] as DataValidation
+    [Output Results] as OutputResults
+
+    InputDocs --> Preprocess : "Send documents"
+    Preprocess --> OCR : "Processed Data"
+    OCR --> TextAnalysis : "Extracted Text"
+    TextAnalysis --> DataValidation : "Analyzed Text"
+    DataValidation --> OutputResults : "Valid Data"
+}
+
+@enduml

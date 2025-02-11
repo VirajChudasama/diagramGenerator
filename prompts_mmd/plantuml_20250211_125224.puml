@@ -1,0 +1,107 @@
+@startuml
+skinparam backgroundColor #E6E6FA
+
+' Define box colors
+skinparam rectangle {
+    BackgroundColor #FFD700
+}
+skinparam rectangle User_Interaction_Back {
+    BackgroundColor #ADD8E6
+}
+skinparam rectangle Shopping_Cart_Back {
+    BackgroundColor #90EE90
+}
+skinparam rectangle Payment_Processing_Back {
+    BackgroundColor #FFFACD
+}
+skinparam rectangle Order_Management_Back {
+    BackgroundColor #FFCC99
+}
+skinparam rectangle Customer_Support_Back {
+    BackgroundColor #DCDCDC
+}
+skinparam rectangle Admin_Analytics_Back {
+    BackgroundColor #FFCCCB
+}
+
+' User Interaction & Product Browsing
+rectangle User_Interaction_Back {
+    rectangle "Users (Web/Mobile App)" as User
+    rectangle "Browse Products" as Browse
+    rectangle "Product Details" as Details
+    rectangle "Add to Cart & Wishlist" as AddToCart
+}
+
+' Shopping Cart & Checkout
+rectangle Shopping_Cart_Back {
+    rectangle "Cart Management" as CartManagement
+    rectangle "Secure Checkout" as SecureCheckout
+    rectangle "Shipping Address & Delivery" as Shipping
+    rectangle "Order Summary" as OrderSummary
+}
+
+' Payment Processing
+rectangle Payment_Processing_Back {
+    rectangle "Payment Options" as PaymentOptions
+    rectangle "Payment Gateway" as PaymentGateway
+    rectangle "Auto Confirmation" as AutoConfirmation
+}
+
+' Order Management & Fulfillment
+rectangle Order_Management_Back {
+    rectangle "Order Status Tracking" as OrderTracking
+    rectangle "Inventory Check" as InventoryCheck
+    rectangle "Third-party Logistics" as ThirdPartyLogistics
+    rectangle "Notification System" as Notification
+}
+
+' Customer Support & Returns
+rectangle Customer_Support_Back {
+    rectangle "Helpdesk" as Helpdesk
+    rectangle "Return & Refund Process" as ReturnProcess
+    rectangle "Feedback System" as FeedbackSystem
+}
+
+' Admin & Analytics Dashboard
+rectangle Admin_Analytics_Back {
+    rectangle "Sales Analytics" as SalesAnalytics
+    rectangle "Customer Behavior Tracking" as CustomerBehavior
+    rectangle "Order History & Revenue Reports" as OrderReports
+    rectangle "Role-Based Access Control" as AccessControl
+}
+
+' Arrows for data flow
+
+' User Interaction Flow
+User -down-> Browse : "Browse Products"
+Browse -down-> Details : "View Products"
+Details -down-> AddToCart : "Add to Cart/Wishlist"
+
+' Shopping Cart Flow
+AddToCart -down-> CartManagement : "Update/Remove Items"
+CartManagement -down-> SecureCheckout : "Go to Checkout"
+SecureCheckout -down-> Shipping : "Select Address/Delivery"
+Shipping -down-> OrderSummary : "Review Order"
+
+' Payment Processing Flow
+OrderSummary -down-> PaymentOptions : "Select Payment Method"
+PaymentOptions -down-> PaymentGateway : "Process Payment"
+PaymentGateway -down-> AutoConfirmation : "Confirm Payment"
+
+' Order Management Flow
+AutoConfirmation -down-> OrderTracking : "Track Order"
+OrderTracking -down-> InventoryCheck : "Check Inventory"
+InventoryCheck -down-> ThirdPartyLogistics : "Allocate to Warehouse"
+ThirdPartyLogistics -down-> Notification : "Send Updates"
+
+' Customer Support Flow
+User -down-> Helpdesk : "Inquire Support"
+Helpdesk -down-> ReturnProcess : "Request Return"
+ReturnProcess -down-> FeedbackSystem : "Leave Product Feedback"
+
+' Admin & Analytics Flow
+AccessControl -down-> SalesAnalytics : "Manage Sales"
+SalesAnalytics -down-> CustomerBehavior : "Analyze Data"
+CustomerBehavior -down-> OrderReports : "View History"
+
+@enduml

@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import os
 from pathlib import Path
-
+import sys
 # Define Directories
 PNG_DIR = Path(r"C:\Diagramgenerator\prompts_png")
 LOGO_PATH = Path(r"C:\Diagramgenerator\logo.jpg")
@@ -17,7 +17,7 @@ if not LOGO_PATH.exists():
     exit(1)
 
 # Define background color
-background_color = "#F5F5DC"  # Beige
+background_color =  sys.argv[1] # Beige
 
 # Convert HEX to BGR (since OpenCV uses BGR format)
 def hex_to_bgr(hex_color):
@@ -48,7 +48,7 @@ if diagram is None or logo is None:
 h_img, w_img, _ = diagram.shape
 
 # Define uniform padding (8% of image width for better spacing)
-padding_size = int(max(h_img, w_img) * 0.06)
+padding_size = int(max(h_img, w_img) * 0.05)
 
 # Create a new blank canvas with padding
 padded_image = cv2.copyMakeBorder(
@@ -56,17 +56,17 @@ padded_image = cv2.copyMakeBorder(
     cv2.BORDER_CONSTANT, value=bg_color_bgr
 )
 
-# Resize logo dynamically (keeping aspect ratio)
-max_logo_width = w_img // 7  # 1/7th of image width
-max_logo_height = h_img // 15  # 1/15th of image height
-logo = cv2.resize(logo, (max_logo_width, max_logo_height))
+# Set a fixed logo size (static dimensions)
+fixed_logo_width = 140  # Fixed width in pixels
+fixed_logo_height = 70  # Fixed height in pixels
+logo = cv2.resize(logo, (fixed_logo_width, fixed_logo_height))
 
-# Define correct logo positions **AFTER** adding padding
+# Define fixed logo positions **AFTER** adding padding
 possible_positions = {
     "top-left": (10, 10),
-    "top-right": (padded_image.shape[1] - max_logo_width - 10, 10),
-    "bottom-left": (10, padded_image.shape[0] - max_logo_height - 10),
-    "bottom-right": (padded_image.shape[1] - max_logo_width - 10, padded_image.shape[0] - max_logo_height - 10)
+    "top-right": (padded_image.shape[1] - fixed_logo_width - 10, 10),
+    "bottom-left": (10, padded_image.shape[0] - fixed_logo_height - 10),
+    "bottom-right": (padded_image.shape[1] - fixed_logo_width - 10, padded_image.shape[0] - fixed_logo_height - 10)
 }
 
 # User input for logo position
@@ -83,11 +83,11 @@ x_logo, y_logo = possible_positions.get(logo_position, (10, 10))
 if logo.shape[2] == 4:  # If logo has an alpha channel
     alpha = logo[:, :, 3] / 255.0
     for c in range(3):  # Apply alpha blending to RGB channels
-        padded_image[y_logo:y_logo + logo.shape[0], x_logo:x_logo + logo.shape[1], c] = (
-            alpha * logo[:, :, c] + (1 - alpha) * padded_image[y_logo:y_logo + logo.shape[0], x_logo:x_logo + logo.shape[1], c]
+        padded_image[y_logo:y_logo + fixed_logo_height, x_logo:x_logo + fixed_logo_width, c] = (
+            alpha * logo[:, :, c] + (1 - alpha) * padded_image[y_logo:y_logo + fixed_logo_height, x_logo:x_logo + fixed_logo_width, c]
         )
 else:
-    padded_image[y_logo:y_logo + logo.shape[0], x_logo:x_logo + logo.shape[1]] = logo
+    padded_image[y_logo:y_logo + fixed_logo_height, x_logo:x_logo + fixed_logo_width] = logo
 
 # Save output
 output_counter = max(

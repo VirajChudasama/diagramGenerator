@@ -1,0 +1,26 @@
+@startuml
+skinparam backgroundColor #F5F5DC
+skinparam component {
+    BackgroundColor #87CEEB
+    BorderColor #000000
+}
+skinparam Arrow {
+    Color #FF4500
+}
+
+package "Document Processing Pipeline" {
+    [Input Documents] as inputDocuments
+    [Preprocessing] as preprocessing
+    [Text Extraction] as textExtraction
+    [Data Classification] as dataClassification
+    [Post-processing] as postProcessing
+    [Storage] as storage
+
+    inputDocuments --> preprocessing : "Send Documents"
+    preprocessing --> textExtraction : "Extract Text"
+    textExtraction --> dataClassification : "Classify Data"
+    dataClassification --> postProcessing : "Process Results"
+    postProcessing --> storage : "Store Results"
+}
+
+@enduml

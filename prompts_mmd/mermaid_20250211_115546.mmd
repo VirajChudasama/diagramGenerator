@@ -1,0 +1,32 @@
+flowchart TD
+    style A fill:#87CEEB
+    style B fill:#87CEEB
+    style C fill:#87CEEB
+    style D fill:#87CEEB
+    style E fill:#87CEEB
+    style F fill:#87CEEB
+    style G fill:#87CEEB
+    style H fill:#87CEEB
+    style I fill:#87CEEB
+    style J fill:#87CEEB
+    style K fill:#87CEEB
+    style L fill:#87CEEB
+    style M fill:#87CEEB
+
+    A[User Interaction] -->|Login/Signup| B[User Authentication]
+    B -->|Success| C[User Homepage]
+    C -->|Select Content| D[Content Metadata Request]
+    D -->|Fetch Metadata| E[Display Metadata]
+    E -->|Click Play| F[Content Availability Check]
+    F -->|Available| G[Streaming Setup]
+    F -->|Not Available| H[Display Unavailability Notice]
+    G -->|Initiate Streaming| I[Data Retrieval]
+    I -->|Stream Data| J[Content Delivery]
+    J -->|Buffering| K[Playback]
+    K -->|User Interaction| L[User Controls]
+    L -->|Pause/Play| K
+    L -->|Skip| I
+    K -->|End| M[Exit Playback]
+
+    classDef background fill:#F5F5DC,stroke:#FFFFFFFF,stroke-width:0px;
+    classDef arrows stroke:#FF4500,stroke-width:2px;

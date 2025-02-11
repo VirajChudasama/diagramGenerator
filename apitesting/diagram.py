@@ -98,9 +98,9 @@ def generate_plantuml_diagram(background_color, arrow_color, box_color, custom_p
 
 
 # Example usage
-background_color = "#F5F5DC"  # Beige
-arrow_color = "#FF4500"  # OrangeRed
-box_color = "#87CEEB"  # SkyBlue
+#background_color = "#F5F5DC"  # Beige
+#arrow_color = "#FF4500"  # OrangeRed
+#box_color = "#87CEEB"  # SkyBlue
 
 
 # Read command-line arguments

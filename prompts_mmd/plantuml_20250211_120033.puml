@@ -1,0 +1,49 @@
+@startuml
+!define BACKGROUND_COLOR #F5F5DC
+!define ARROW_COLOR #FF4500
+!define BOX_COLOR #87CEEB
+
+skinparam backgroundColor BACKGROUND_COLOR
+skinparam arrowColor ARROW_COLOR
+skinparam rectangle {
+    BackgroundColor BOX_COLOR
+    BorderColor black
+}
+
+scale 0.7
+
+rectangle "User Device" {
+    rectangle "User Interface" as UI
+    rectangle "User Input" as Input
+}
+
+rectangle "Netflix Backend" {
+    rectangle "Content Catalog" as Catalog
+    rectangle "Authentication Service" as AuthService
+    rectangle "Streaming Service" as Streaming
+    rectangle "Content Delivery Network (CDN)" as CDN
+}
+
+rectangle "Playback" {
+    rectangle "Video Player" as VideoPlayer
+    rectangle "Buffering & Caching" as Buffering
+}
+
+UI --> Input : "Interact with UI"
+Input --> AuthService : "Log in / Sign up"
+AuthService --> Catalog : "Request content catalog"
+Catalog --> Input : "Display available content"
+
+Input --> Streaming : "Select content to play"
+Streaming --> AuthService : "Validate user"
+AuthService --> Streaming : "User valid"
+
+Streaming --> CDN : "Request video stream"
+CDN --> Streaming : "Stream video data"
+
+Streaming --> VideoPlayer : "Send video data"
+
+VideoPlayer --> Buffering : "Buffer stream"
+Buffering --> VideoPlayer : "Playback content"
+
+@enduml

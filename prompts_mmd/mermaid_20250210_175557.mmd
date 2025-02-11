@@ -1,0 +1,13 @@
+flowchart TD
+    A([Start Document Processing]):::box --> B[Extract Text\nfrom Document]:::box
+    B --> C{Is Text\nExtraction Successful?}:::box
+    C -- Yes --> D[Process Extracted\nText with AI Model]:::box
+    C -- No --> E[Log Error\nand Notify User]:::box
+    D --> F[Generate Insights\nfrom Text]:::box
+    F --> G[Store Processed\nData in Database]:::box
+    G --> H([End Processing]):::box
+    E --> H
+
+    classDef box fill:#87CEEB, stroke:#FF4500, stroke-width:2px;
+    classDef background fill:#F5F5DC;
+    class A,B,C,D,E,F,G,H background;

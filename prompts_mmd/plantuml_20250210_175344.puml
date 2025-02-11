@@ -1,0 +1,25 @@
+@startuml
+skinparam backgroundColor #F5F5DC
+skinparam arrowColor #FF4500
+skinparam component {
+    BackgroundColor #87CEEB
+    FontColor black
+}
+
+package "AI Document Processing Pipeline" {
+    [Document Upload] as Upload
+    [Preprocessing] as Preprocess
+    [Data Extraction] as Extract
+    [Data Validation] as Validate
+    [Storage] as Storage
+    [Analytics & Reporting] as Analytics
+
+    Upload --> Preprocess : Upload Document
+    Preprocess --> Extract : Preprocessed Data
+    Extract --> Validate : Extracted Data
+    Validate --> Storage : Validated Data
+    Validate --> Analytics : Validated Data
+    Storage --> Analytics : Stored Data
+}
+
+@enduml
