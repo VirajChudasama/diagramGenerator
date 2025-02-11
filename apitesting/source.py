@@ -47,13 +47,13 @@ def generate_diagram():
     prompt_arg = prompt.replace("\n", " ")
 
     # Step 1: Generate the diagram
-    diagram_success = run_script("mermaid-plantuml-dynamic.py", diagram_type, background_color, arrow_color, box_color, prompt_arg)
+    diagram_success = run_script("diagram.py", diagram_type, background_color, arrow_color, box_color, prompt_arg)
     if not diagram_success:
         return jsonify({"error": "Failed to generate diagram"}), 500
 
     # Step 2: Overlay logo if requested
     if add_logo:
-        logo_success = run_script("overlaytext.py", background_color)
+        logo_success = run_script("logo.py", background_color)
         if not logo_success:
             return jsonify({"error": "Failed to add logo"}), 500
 
