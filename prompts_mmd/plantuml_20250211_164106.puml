@@ -1,0 +1,83 @@
+@startuml
+skinparam backgroundColor #E6E6FA
+skinparam handwritten false
+skinparam arrowColor #228B22
+skinparam component {
+    BackgroundColor #FFD700
+}
+
+// Define color for each module
+!define USER_INTERACTION_COLOR #ADD8E6
+!define SHOPPING_CART_COLOR #90EE90
+!define PAYMENT_PROCESSING_COLOR #FFD700
+!define ORDER_MANAGEMENT_COLOR #FFA07A
+!define CUSTOMER_SUPPORT_COLOR #D3D3D3
+!define ADMIN_ANALYTICS_COLOR #FFCCCB
+
+package "User Interaction & Product Browsing" {
+    [Web App] as webApp << (D,#USER_INTERACTION_COLOR) >>
+    [Mobile App] as mobileApp << (D,#USER_INTERACTION_COLOR) >>
+    [Browse Products] as browseProducts << (D,#USER_INTERACTION_COLOR) >>
+    [Product Detail] as productDetail << (D,#USER_INTERACTION_COLOR) >>
+    [Add to Cart/Wishlist] as addToCart << (D,#USER_INTERACTION_COLOR) >>
+
+    webApp --> browseProducts
+    mobileApp --> browseProducts
+    browseProducts --> productDetail
+    productDetail --> addToCart
+}
+
+package "Shopping Cart & Checkout" {
+    [Shopping Cart] as shoppingCart << (D,#SHOPPING_CART_COLOR) >>
+    [Checkout] as checkout << (D,#SHOPPING_CART_COLOR) >>
+    [Shipping & Delivery Preferences] as shippingPreferences << (D,#SHOPPING_CART_COLOR) >>
+    [Order Summary] as orderSummary << (D,#SHOPPING_CART_COLOR) >>
+
+    addToCart --> shoppingCart
+    shoppingCart --> checkout
+    checkout --> shippingPreferences
+    shippingPreferences --> orderSummary
+}
+
+package "Payment Processing" {
+    [Payment Gateway] as paymentGateway << (D,#PAYMENT_PROCESSING_COLOR) >>
+    [Available Payment Options] as paymentOptions << (D,#PAYMENT_PROCESSING_COLOR) >>
+    [Order Confirmation] as orderConfirmation << (D,#PAYMENT_PROCESSING_COLOR) >>
+
+    orderSummary --> paymentGateway
+    paymentGateway --> paymentOptions
+    paymentOptions --> orderConfirmation
+}
+
+package "Order Management & Fulfillment" {
+    [Order Status Tracking] as orderStatus << (D,#ORDER_MANAGEMENT_COLOR) >>
+    [Inventory Check] as inventoryCheck << (D,#ORDER_MANAGEMENT_COLOR) >>
+    [Third-Party Logistics] as logistics << (D,#ORDER_MANAGEMENT_COLOR) >>
+    [Notification System] as notificationSystem << (D,#ORDER_MANAGEMENT_COLOR) >>
+
+    orderConfirmation --> orderStatus
+    orderStatus --> inventoryCheck
+    inventoryCheck --> logistics
+    logistics --> notificationSystem
+}
+
+package "Customer Support & Returns" {
+    [Helpdesk] as helpdesk << (D,#CUSTOMER_SUPPORT_COLOR) >>
+    [Return Process] as returnProcess << (D,#CUSTOMER_SUPPORT_COLOR) >>
+    [Feedback System] as feedbackSystem << (D,#CUSTOMER_SUPPORT_COLOR) >>
+
+    notificationSystem --> helpdesk
+    helpdesk --> returnProcess
+    returnProcess --> feedbackSystem
+}
+
+package "Admin & Analytics Dashboard" {
+    [Sales Analytics] as salesAnalytics << (D,#ADMIN_ANALYTICS_COLOR) >>
+    [Customer Insights] as customerInsights << (D,#ADMIN_ANALYTICS_COLOR) >>
+    [Role-Based Access Control] as accessControl << (D,#ADMIN_ANALYTICS_COLOR) >>
+
+    salesAnalytics --> customerInsights
+    customerInsights --> accessControl
+}
+
+@enduml

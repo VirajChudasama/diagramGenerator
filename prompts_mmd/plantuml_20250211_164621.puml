@@ -1,0 +1,75 @@
+@startuml
+skinparam backgroundColor #E6E6FA
+skinparam component {
+    BackgroundColor #FFD700
+    FontColor black
+    BorderColor black
+    RoundCorner 15
+}
+skinparam arrow {
+    Color #228B22
+}
+
+package "User Interaction" {
+    rectangle "Web App" as webApp << (L,#ADD8E6) >> 
+    rectangle "Mobile App" as mobileApp << (L,#ADD8E6) >> 
+    rectangle "Product Browsing" as productBrowsing << (L,#ADD8E6) >> 
+    rectangle "Add to Cart/Wishlist" as addToCart << (L,#ADD8E6) >> 
+}
+
+package "Shopping Cart & Checkout" {
+    rectangle "Cart Management" as cartManagement << (L,#90EE90) >> 
+    rectangle "Secure Checkout" as secureCheckout << (L,#90EE90) >> 
+    rectangle "Order Summary" as orderSummary << (L,#90EE90) >> 
+}
+
+package "Payment Processing" {
+    rectangle "Payment Options" as paymentOptions << (L,#FFEFD5) >> 
+    rectangle "Payment Gateway" as paymentGateway << (L,#FFEFD5) >> 
+}
+
+package "Order Management" {
+    rectangle "Order Status Tracking" as orderTracking << (L,#FFA07A) >> 
+    rectangle "Inventory Management" as inventoryManagement << (L,#FFA07A) >> 
+    rectangle "Third Party Logistics" as thirdPartyLogistics << (L,#FFA07A) >> 
+}
+
+package "Customer Support" {
+    rectangle "Helpdesk" as helpdesk << (L,#D3D3D3) >> 
+    rectangle "Returns & Refunds" as returns << (L,#D3D3D3) >> 
+}
+
+package "Admin & Analytics" {
+    rectangle "Sales Analytics" as salesAnalytics << (L,#CD5C5C) >> 
+    rectangle "Customer Insights" as customerInsights << (L,#CD5C5C) >> 
+    rectangle "Order History" as orderHistory << (L,#CD5C5C) >> 
+}
+
+' Data Flow Arrows
+webApp --> productBrowsing : "Browse Products"
+mobileApp --> productBrowsing : "Browse Products"
+
+productBrowsing --> addToCart : "Add to Cart/Wishlist"
+
+addToCart --> cartManagement : "Manage Cart"
+cartManagement --> secureCheckout : "Proceed to Checkout"
+
+secureCheckout --> orderSummary : "Review Order"
+orderSummary --> paymentOptions : "Select Payment Options"
+
+paymentOptions --> paymentGateway : "Process Payment"
+paymentGateway --> orderTracking : "Payment Confirmation"
+
+orderTracking --> inventoryManagement : "Check Inventory"
+inventoryManagement --> thirdPartyLogistics : "Allocate Warehouse"
+
+thirdPartyLogistics --> orderTracking : "Shipment Update"
+orderTracking --> helpdesk : "Inquiries & Support"
+
+helpdesk --> returns : "Initiate Returns"
+returns --> orderTracking : "Refund Process"
+
+salesAnalytics --> customerInsights : "Analyze Customer Behavior"
+customerInsights --> orderHistory : "Access Order Data"
+
+@enduml

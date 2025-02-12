@@ -57,8 +57,8 @@ padded_image = cv2.copyMakeBorder(
 )
 
 # Set a fixed logo size (static dimensions)
-fixed_logo_width = 140  # Fixed width in pixels
-fixed_logo_height = 70  # Fixed height in pixels
+fixed_logo_width = 120  # Fixed width in pixels
+fixed_logo_height = 60  # Fixed height in pixels
 logo = cv2.resize(logo, (fixed_logo_width, fixed_logo_height))
 
 # Define fixed logo positions **AFTER** adding padding
