@@ -1,0 +1,83 @@
+@startuml
+!define RECTANGLE(color, label) rectangle label as " " << (o) >> #color
+skinparam backgroundColor #F5F5DC
+skinparam handwritten true
+skinparam rectangle {
+  BackgroundColor #F5F5DC
+  Bordercolor #000
+}
+skinparam arrow {
+  Color #FF4500
+}
+
+// User Interaction Module
+RECTANGLE(LightBlue, "User Interaction\n & Authentication") {
+    User -> Web : Access Platform
+    User -> Mobile : Access Platform
+    User -> Smart TV : Access Platform
+    User -> Gaming Console : Access Platform
+    
+    User -> "User Authentication" : Login (OAuth, Google, FB, Email)
+    "User Authentication" -> "Profile Selection" : Select Profile
+    "Profile Selection" -> "Session Management" : Secure User Session
+}
+
+// Recommendation Engine Module
+RECTANGLE(LightGreen, "Content Discovery\n & Recommendation") {
+    "Session Management" -> "Personalized Homepage" : Show Recommendations
+    "Personalized Homepage" -> "Recommendation Engine" : Request Recommendations
+    "Recommendation Engine" -> "Search Functionality" : Search Content
+    "Recommendation Engine" -> User : Return Recommendations
+    "Recommendation Engine" -> "Trending Lists" : Trending/Top 10 content
+}
+
+// Content Management Module
+RECTANGLE(LightYellow, "Content Management\n & CDN Distribution") {
+    "Content Management" -> "Content Storage" : Store Content in DB
+    "Content Storage" -> "Encoding/Transcoding Pipeline" : Process for Quality Versions
+    "Encoding/Transcoding Pipeline" -> "CDN" : Distribute to Global Edge Servers
+    "CDN" -> "DRM Protection" : Manage Content Protection
+}
+
+// Streaming & Playback Module
+RECTANGLE(LightOrange, "Streaming\n & Playback") {
+    "CDN" -> "Video Player" : Stream Video Content
+    "Video Player" -> User : Play Content
+    "Video Player" -> "ABR" : Adjust Video Quality
+    "Video Player" -> "Buffering Mechanisms" : Manage Buffering
+    "Video Player" -> "Playback Controls" : Provide Features (subtitles, speed)
+    "Video Player" -> "Watch History" : Track Watch History
+}
+
+// User Activity Module
+RECTANGLE(LightGrey, "User Activity\n & Engagement Tracking") {
+    "Video Player" -> "Real-time Analytics" : Send Watch Data
+    "Real-time Analytics" -> "AI Insights" : Improve Recommendations
+    "AI Insights" -> "Parental Controls" : Manage Content Restrictions
+}
+
+// Billing Module
+RECTANGLE(LightRed, "Billing\n & Subscription Management") {
+    User -> "Subscription Plans" : Select Plan
+    "Subscription Plans" -> "Secure Payment Gateway" : Process Payment
+    "Secure Payment Gateway" -> User : Notify (Payment Success/Failure)
+    "Subscription Plans" -> User : Auto-renewal Notifications
+}
+
+// System Monitoring Module
+RECTANGLE(LightRed, "System Monitoring\n & Security") {
+    "CDN" -> "Load Balancer" : Distribute Traffic
+    "Load Balancer" -> "Logging/Monitoring" : Monitor Traffic
+    "Logging/Monitoring" -> "Fraud Detection" : Track User Activity
+    "Fraud Detection" -> "Compliance Management" : Ensure Data Laws Compliance
+}
+
+// Connecting Modules
+"User Interaction" --> "Content Discovery" : Data Flow
+"Content Discovery" --> "Content Management" : Request Content
+"Content Management" --> "Streaming" : Deliver Video Content
+"Streaming" --> "User Activity" : Send Engagement Data
+"User Activity" --> "Billing" : Process Subscriptions
+"Content Management" --> "System Monitoring" : Monitor Content Usage
+
+@enduml

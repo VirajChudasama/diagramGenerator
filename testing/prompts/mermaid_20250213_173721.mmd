@@ -1,0 +1,47 @@
+%%{init: {'theme': 'default', 'themeVariables': { 'background': '#F5F5DC', 'arrowColor': '#FF4500', 'boxFill': '#87CEEB'}}}%%
+flowchart TD
+    A[User Interaction & Authentication]:::lightBlue
+    B[Content Discovery & Recommendation]:::lightGreen
+    C[Content Management & CDN Distribution]:::lightYellow
+    D[Streaming & Playback]:::lightOrange
+    E[User Activity & Engagement Tracking]:::lightGrey
+    F[Billing & Subscription Management]:::lightRed
+    G[System Monitoring & Security]:::lightRed
+
+    A1[Web, Mobile, Smart TV, Gaming Console\nLogin via OAuth, Google, Facebook, Email\nMulti-profile selection\nSecure session handling]
+    B1[Personalized homepage\nAI-powered recommendation using\ncollaborative filtering & deep learning\nSearch with filters like genre, language, release year\nTrending and Top 10 lists]
+    C1[Content stored in a distributed database\nProcessed via CMS\nEncoding & transcoding for multiple resolutions\nCDN integration with edge servers\nDRM enforcement]
+    D1[Adaptive Bitrate Streaming for dynamic quality\nVideo player with subtitles, multi-audio tracks,\nplayback speed control\nBuffering, preloading for seamless experience\nWatch history tracking & resume playback]
+    E1[Real-time analytics on watch time,\nsession duration\nAI-powered insights for better recommendations\nParental controls & content restrictions]
+    F1[Subscription plans – Basic, Standard, Premium\nSecure payment gateways – Credit/Debit Cards,\nPayPal, Apple Pay, Google Pay\nAuto-renewal & cancellation options\nNotifications for payment failures]
+    G1[Load balancing for traffic distribution\nLogging, error handling, server health monitoring\nAI-driven fraud detection\nCompliance with GDPR, PCI-DSS,\nand regional data laws]
+
+    A -->|User initiates login| A1
+    A1 -->|Profiles selected| B
+    B -->|Recommendations fetched| B1
+    B --->|User searches| B1
+    B1 -->|Fetch content details| C
+    C -->|Content data retrieved| C1
+    C1 -->|Content encoded & stored| C
+    C1 -->|Content delivered via CDN| D
+    D -->|Video streamed| D1
+    D1 -->|User interactions occur| E
+    E -->|Engagement data collected| E1
+    E1 -->|Analytics processed| E
+    D -->|Play back content| D1
+    E -->|Insights generated| B
+    D1 -->|Playback history stored| E
+
+    A -->|Subscription details processed| F
+    F -->|Payment gateways utilized| F1
+    F1 -->|Auto-renewal & notifications| F
+    F -->|User subscription details| G
+    G -->|System monitored for security| G1
+    G -->|Security checks performed| B
+
+    classDef lightBlue fill:#87CEEB;
+    classDef lightGreen fill:#90EE90;
+    classDef lightYellow fill:#FFFACD;
+    classDef lightOrange fill:#FFA07A;
+    classDef lightGrey fill:#D3D3D3;
+    classDef lightRed fill:#F08080;

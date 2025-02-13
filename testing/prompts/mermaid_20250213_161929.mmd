@@ -1,0 +1,16 @@
+flowchart TD
+    style A fill:#fc03cf, stroke:#0356fc, stroke-width:2px
+    style B fill:#fc03cf, stroke:#0356fc, stroke-width:2px
+    style C fill:#fc03cf, stroke:#0356fc, stroke-width:2px
+    style D fill:#fc03cf, stroke:#0356fc, stroke-width:2px
+    style E fill:#fc03cf, stroke:#0356fc, stroke-width:2px
+    style F fill:#fc03cf, stroke:#0356fc, stroke-width:2px
+
+    A[Start] --> B[User Login]
+    B -->|Valid Credentials| C[Access Dashboard]
+    B -->|Invalid Credentials| D[Show Error Message]
+    D --> B
+    C --> E[Manage User Profile]
+    C --> F[Logout]
+    F --> A
+    E --> C

@@ -1,0 +1,82 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}}%%
+flowchart LR
+    subgraph User Interaction & Authentication [User Interaction]
+        direction TB
+        UI1[Users Access via Web, Mobile, Smart TV, Gaming Console]:::lightBlue
+        UI2[Login via OAuth, Google, Facebook, Email]:::lightBlue
+        UI3[Multi-profile Selection]:::lightBlue
+        UI4[Secure Session Handling]:::lightBlue
+    end
+
+    subgraph Content Discovery & Recommendation [Recommendation Engine]
+        direction TB
+        RE1[Personalized Homepage]:::lightGreen
+        RE2[AI-Powered Recommendation\n(Collaborative Filtering & Deep Learning)]:::lightGreen
+        RE3[Search with Filters\n(Genre, Language, Release Year)]:::lightGreen
+        RE4[Trending & Top 10 Lists]:::lightGreen
+    end
+
+    subgraph Content Management & CDN Distribution [Content Management & CDN]
+        direction TB
+        CM1[Content Stored in\nDistributed Database]:::lightYellow
+        CM2[Processed via CMS]:::lightYellow
+        CM3[Encoding & Transcoding\nfor Multiple Resolutions]:::lightYellow
+        CM4[CDN Integration with\nEdge Servers]:::lightYellow
+        CM5[DRM Enforcement]:::lightYellow
+    end
+
+    subgraph Streaming & Playback [Streaming & Playback]
+        direction TB
+        SP1[Adaptive Bitrate Streaming\nfor Dynamic Quality]:::lightOrange
+        SP2[Video Player with\nSubtitles, Multi-Audio Tracks, Playback Speed Control]:::lightOrange
+        SP3[Buffering, Preloading for\nSeamless Experience]:::lightOrange
+        SP4[Watch History Tracking & Resume Playback]:::lightOrange
+    end
+
+    subgraph User Activity & Engagement Tracking [User Activity & Analytics]
+        direction TB
+        UA1[Real-Time Analytics on\nWatch Time, Session Duration]:::lightGrey
+        UA2[AI-Powered Insights for\nBetter Recommendations]:::lightGrey
+        UA3[Parental Controls & Content Restrictions]:::lightGrey
+    end
+
+    subgraph Billing & Subscription Management [Billing & Security]
+        direction TB
+        BS1[Subscription Plans –\nBasic, Standard, Premium]:::lightRed
+        BS2[Secure Payment Gateways\n(Credit/Debit Cards, PayPal, Apple Pay, Google Pay)]:::lightRed
+        BS3[Auto-Renewal & Cancellation Options]:::lightRed
+        BS4[Notifications for Payment Failures]:::lightRed
+    end
+
+    subgraph System Monitoring & Security [System Monitoring]
+        direction TB
+        MS1[Load Balancing for Traffic Distribution]:::lightGrey
+        MS2[Logging, Error Handling,\nServer Health Monitoring]:::lightGrey
+        MS3[AI-Driven Fraud Detection]:::lightGrey
+        MS4[Compliance with GDPR,\nPCI-DSS, Regional Data Laws]:::lightGrey
+    end
+
+    %% Connections between components
+    UI1 --> RE1
+    RE1 --> RE2
+    RE1 --> RE3
+    RE1 --> RE4
+    UI2 --> UI3
+    UI4 --> UI1
+    RE2 --> CM1
+    CM1 --> CM2
+    CM2 --> CM3
+    CM3 --> CM4
+    CM5 --> SP1
+    SP1 --> SP2
+    SP2 --> SP3
+    SP3 --> SP4
+    SP4 --> UA1
+    UA1 --> UA2
+    UA1 --> UA3
+    BS1 --> BS2
+    BS2 --> BS3
+    BS3 --> BS4
+    MS1 --> MS2    
+    MS2 --> MS3
+    MS3 --> MS4

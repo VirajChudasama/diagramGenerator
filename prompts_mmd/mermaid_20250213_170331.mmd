@@ -1,0 +1,51 @@
+flowchart TD
+    A[User Interaction]
+    style A fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    
+    B[Authenticate User]
+    style B fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    
+    C[Browse Content]
+    style C fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    
+    D[Select Content]
+    style D fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    
+    E[Content Preparation]
+    style E fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    
+    F[Request Stream]
+    style F fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    
+    G[Stream Content]
+    style G fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    
+    H[Playback]
+    style H fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    
+    I[User Feedback]
+    style I fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    
+    J[User Activity Logging]
+    style J fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+    
+    K[Recommendations]
+    style K fill:#87CEEB,stroke:#FF4500,stroke-width:2px
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+    J --> K
+
+    %% Styling the background and arrows
+    classDef background fill:#F5F5DC;
+    classDef arrows stroke:#FF4500;
+
+    %% Apply the background class to the entire diagram
+    class background background;

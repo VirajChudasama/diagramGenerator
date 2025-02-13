@@ -1,0 +1,11 @@
+flowchart TB
+    style A fill:#fcba03,stroke:#0356fc,stroke-width:2px;
+    style B fill:#fc03cf,stroke:#0356fc,stroke-width:2px;
+    style C fill:#fc03cf,stroke:#0356fc,stroke-width:2px;
+    style D fill:#fc03cf,stroke:#0356fc,stroke-width:2px;
+
+    A[Start] --> B{Decision?\nYes / No}
+    B -- Yes --> C[Action 1]
+    B -- No --> D[Action 2]
+    C --> A
+    D --> A

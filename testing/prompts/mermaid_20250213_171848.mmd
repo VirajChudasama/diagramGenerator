@@ -1,0 +1,13 @@
+flowchart TD
+    style A fill:#fc03cf,stroke:#000,stroke-width:2px
+    style B fill:#fc03cf,stroke:#000,stroke-width:2px
+    style C fill:#fc03cf,stroke:#000,stroke-width:2px
+    style D fill:#fc03cf,stroke:#000,stroke-width:2px
+
+    %% Define colors for arrows
+    linkStyle default stroke:#0356fc, stroke-width:2px
+
+    A[Start\nInitial step] --> B[Process 1\nFirst action]
+    B --> C{Decision?\nIs it correct?}
+    C -- Yes --> D[End\nFinal step]
+    C -- No --> B

@@ -1,0 +1,80 @@
+@startuml
+skinparam backgroundColor #F5F5DC
+skinparam ArrowColor #FF4500
+skinparam Rectangle {
+    BackgroundColor #87CEEB
+}
+
+rectangle "User Interaction & Authentication" as UI {
+    rectangle "Web" as Web
+    rectangle "Mobile" as Mobile
+    rectangle "Smart TV" as SmartTV
+    rectangle "Gaming Console" as Console
+    rectangle "Login & Authentication" as Auth
+    rectangle "Multi-profile Selection" as ProfileSelection
+    rectangle "Secure User Session" as Session
+}
+
+rectangle "Content Discovery & Recommendation" as Rec {
+    rectangle "Personalized Homepage" as Homepage
+    rectangle "AI-powered Recommendation Engine" as RecEngine
+    rectangle "Search Functionality" as Search
+    rectangle "Trending & Top 10 Lists" as Trending
+}
+
+rectangle "Content Management & CDN Distribution" as CDN {
+    rectangle "Distributed Database" as DB
+    rectangle "Content Management System (CMS)" as CMS
+    rectangle "Encoding & Transcoding Pipeline" as Encoding
+    rectangle "Content Delivery Network (CDN)" as CDNNetwork
+    rectangle "Digital Rights Management (DRM)" as DRM
+}
+
+rectangle "Streaming & Playback" as Stream {
+    rectangle "Adaptive Bitrate Streaming (ABR)" as ABR
+    rectangle "Video Player" as VideoPlayer
+    rectangle "Buffering & Preloading" as Buffering
+    rectangle "Watch History Tracking" as WatchHistory
+}
+
+rectangle "User Activity & Engagement Tracking" as Tracking {
+    rectangle "Real-time Analytics" as Analytics
+    rectangle "AI-powered Insights" as AIInsights
+    rectangle "Parental Controls" as Parental
+}
+
+rectangle "Billing & Subscription Management" as Billing {
+    rectangle "Subscription Plans" as Plans
+    rectangle "Secure Payment Gateways" as Payment
+    rectangle "Auto-renewal Handling" as AutoRenew
+    rectangle "User Notifications" as Notifications
+}
+
+rectangle "System Monitoring & Security" as Security {
+    rectangle "Load Balancing" as LoadBalancing
+    rectangle "Logging & Error Handling" as Logging
+    rectangle "AI-driven Fraud Detection" as FraudDetection
+    rectangle "Compliance (GDPR, PCI-DSS)" as Compliance
+}
+
+' Defining the relationships with arrows
+UI --> Rec : User Requests
+Rec --> CDN : Content Requests
+CDN --> Stream : Content Delivery
+Stream --> UI : Playback Stream
+UI --> Billing : Subscription & Payment Info
+Tracking --> Rec : Feedback for Recommendations
+Billing --> Security : Payment Verification
+
+' Extending the behavior of components
+Auth --> Session : Manage User Session
+RecEngine --> Homepage : Discover Content
+CMS --> DB : Store & Manage Content
+Encoding --> CDNNetwork : Distribute Versions
+DRM --> CDNNetwork : Protect Content
+VideoPlayer --> WatchHistory : Update Playback State
+Analytics --> Engagement : Collect User Behavior
+AutoRenew --> Billing : Handle Plan Renewals
+LoadBalancing --> CDNNetwork : Distribute Traffic
+
+@enduml
