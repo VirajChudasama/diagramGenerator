@@ -1,0 +1,73 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'primaryBorderColor': '#FF4500', 'tertiaryColor': '#FF4500'}}}%%
+flowchart TD
+    subgraph UserInteraction [User Interaction & Authentication]
+        UI1[Users access via Web, Mobile, Smart TV, Gaming Console]
+        UI2[Login via OAuth, Google, Facebook, Email]
+        UI3[Multi-profile selection]
+        UI4[Secure session handling]
+        UI1 --> UI2 --> UI3 --> UI4
+    end
+
+    subgraph ContentDiscovery [Content Discovery & Recommendation]
+        CD1[Personalized homepage]
+        CD2[AI-powered recommendation using \n collaborative filtering & deep learning]
+        CD3[Search with filters like \n genre, language, release year]
+        CD4[Trending and Top 10 lists]
+        CD1 --> CD2 --> CD3 --> CD4
+    end
+
+    subgraph ContentManagement [Content Management & CDN Distribution]
+        CM1[Content stored in a distributed database, processed via CMS]
+        CM2[Encoding & transcoding for multiple resolutions]
+        CM3[CDN integration with edge servers]
+        CM4[DRM enforcement]
+        CM1 --> CM2 --> CM3 --> CM4
+    end
+
+    subgraph StreamingPlayback [Streaming & Playback]
+        SP1[Adaptive Bitrate Streaming for dynamic quality]
+        SP2[Video player with subtitles, \n multi-audio tracks, playback speed control]
+        SP3[Buffering, preloading for seamless experience]
+        SP4[Watch history tracking & resume playback]
+        SP1 --> SP2 --> SP3 --> SP4
+    end
+
+    subgraph UserActivity [User Activity & Engagement Tracking]
+        UA1[Real-time analytics on watch time, session duration]
+        UA2[AI-powered insights for better recommendations]
+        UA3[Parental controls & content restrictions]
+        UA1 --> UA2 --> UA3
+    end
+
+    subgraph BillingManagement [Billing & Subscription Management]
+        B1[Subscription plans – Basic, Standard, Premium]
+        B2[Secure payment gateways – Credit/Debit Cards, PayPal, Apple Pay, Google Pay]
+        B3[Auto-renewal & cancellation options]
+        B4[Notifications for payment failures]
+        B1 --> B2 --> B3 --> B4
+    end
+
+    subgraph SystemMonitoring [System Monitoring & Security]
+        SM1[Load balancing for traffic distribution]
+        SM2[Logging, error handling, server health monitoring]
+        SM3[AI-driven fraud detection]
+        SM4[Compliance with GDPR, PCI-DSS, \n and regional data laws]
+        SM1 --> SM2 --> SM3 --> SM4
+    end
+
+    %% Set styles with distinct colors
+    style UserInteraction fill:#87CEEB
+    style ContentDiscovery fill:#90EE90
+    style ContentManagement fill:#FFD700
+    style StreamingPlayback fill:#FFA07A
+    style UserActivity fill:#D3D3D3
+    style BillingManagement fill:#FF6347
+    style SystemMonitoring fill:#DCDCDC
+
+    %% Arrows indicating data flow
+    UI4 --> CD1
+    CD4 --> CM1
+    CM4 --> SP1
+    SP4 --> UA1
+    UA3 --> B1
+    B4 --> SM1

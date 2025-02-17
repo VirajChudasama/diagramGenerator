@@ -1,0 +1,22 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'tertiaryColor': '#FF4500'}}}%%
+flowchart TD
+    A[User Interaction & Authentication\nUsers access via Web, Mobile, Smart TV, Gaming Console\nLogin via OAuth, Google, Facebook, Email\nMulti-profile selection\nSecure session handling]:::userInteraction --> B[Content Discovery & Recommendation\nPersonalized homepage\nAI-powered recommendation using collaborative filtering & deep learning\nSearch with filters like genre, language, release year\nTrending and Top 10 lists]:::recommendationEngine
+    
+    B --> C[Content Management & CDN Distribution\nContent stored in a distributed database, processed via CMS\nEncoding & transcoding for multiple resolutions\nCDN integration with edge servers\nDRM enforcement]:::contentManagement
+    
+    C --> D[Streaming & Playback\nAdaptive Bitrate Streaming for dynamic quality\nVideo player with subtitles, multi-audio tracks, playback speed control\nBuffering, preloading for seamless experience\nWatch history tracking & resume playback]:::streamingPlayback
+    
+    D --> E[User Activity & Engagement Tracking\nReal-time analytics on watch time, session duration\nAI-powered insights for better recommendations\nParental controls & content restrictions]:::userActivity
+    
+    E --> F[Billing & Subscription Management\nSubscription plans – Basic, Standard, Premium\nSecure payment gateways – Credit/Debit Cards, PayPal, Apple Pay, Google Pay\nAuto-renewal & cancellation options\nNotifications for payment failures]:::billingSecurity
+    
+    C --> F
+    E -->|Data Insights| B
+    F --> G[System Monitoring & Security\nLoad balancing for traffic distribution\nLogging, error handling, server health monitoring\nAI-driven fraud detection\nCompliance with GDPR, PCI-DSS, and regional data laws]:::billingSecurity
+
+    classDef userInteraction fill:#87CEEB;
+    classDef recommendationEngine fill:#90EE90;
+    classDef contentManagement fill:#FFD700;
+    classDef streamingPlayback fill:#FFB6C1;
+    classDef userActivity fill:#D3D3D3;
+    classDef billingSecurity fill:#FF6347;

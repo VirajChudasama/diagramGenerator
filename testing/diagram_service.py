@@ -18,7 +18,6 @@ IMAGE_FILE_PATH.mkdir(parents=True, exist_ok=True)
 MERMAID_FILE_PATH.mkdir(parents=True, exist_ok=True)
 
 
-
 # Initialize the OpenAI Client
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
@@ -62,18 +61,22 @@ def addLogo(filePath, background_color ):
     )
 
     # Set a fixed logo size (static dimensions)
+    LOGO_ASPRATIO = 4/3
+
     if w_img <= 400 and h_img <= 300:
         fixed_logo_width = 50
-        fixed_logo_height = 20
+        fixed_logo_height = int(fixed_logo_width / LOGO_ASPRATIO)
     elif w_img <= 800 and h_img <= 600:
         fixed_logo_width = 75
-        fixed_logo_height = 30
+        fixed_logo_height = int(fixed_logo_width / LOGO_ASPRATIO)
     elif w_img <= 1200 and h_img <= 900:
         fixed_logo_width = 100
-        fixed_logo_height = 40
+        fixed_logo_height = int(fixed_logo_width / LOGO_ASPRATIO)
     else:
         fixed_logo_width = 150
-        fixed_logo_height = 60  
+        fixed_logo_height = int(fixed_logo_width / LOGO_ASPRATIO)
+
+
     logo = cv2.resize(logo, (fixed_logo_width, fixed_logo_height))
 
     # Define fixed logo positions **AFTER** adding padding

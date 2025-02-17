@@ -1,0 +1,12 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}}%%
+flowchart TD
+    A[Application Submission]:::box -->|Apply| B[Documentation Review]:::box
+    B -->|Documents Validated| C[Credit Check]:::box
+    C -->|Credit Approved| D[Loan Approval]:::box
+    C -->|Credit Rejected| E[Application Denial]:::box
+    D -->|Loan Funded| F[Disbursement to Borrower]:::box
+    E -->|Notification Sent| G[End]:::box
+    F -->|Repayment Schedule| H[Loan Repayment Process]:::box
+    H -->|Complete Payments| G
+
+    classDef box fill:#87CEEB,stroke:#333,stroke-width:2px;

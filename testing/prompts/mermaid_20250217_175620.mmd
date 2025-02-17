@@ -1,0 +1,29 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'primaryBorderColor': '#FF4500', 'tertiaryColor': '#FF4500'}}}%%
+flowchart TD
+    A[User Interaction & Authentication\n- Web, Mobile, Smart TV, Gaming Console\n- Login via OAuth, Google, Facebook, Email\n- Multi-profile selection\n- Secure session handling]:::userInter
+    B[Content Discovery & Recommendation\n- Personalized homepage\n- AI-powered recommendation\n- Search with filters (genre, language, release year)\n- Trending and Top 10 lists]:::recEng
+    C[Content Management & CDN Distribution\n- Distributed database storage\n- Encoding & transcoding for resolutions\n- CDN integration with edge servers\n- DRM enforcement]:::contentMgmt
+    D[Streaming & Playback\n- Adaptive Bitrate Streaming\n- Video player with subtitles, multi-audio tracks\n- Buffering, preloading for seamless experience\n- Watch history tracking & resume playback]:::streamPlayback
+    E[User Activity & Engagement Tracking\n- Real-time analytics on watch time\n- AI-powered insights\n- Parental controls & content restrictions]:::userEngagement
+    F[Billing & Subscription Management\n- Subscription plans (Basic, Standard, Premium)\n- Secure payment gateways\n- Auto-renewal & cancellation options\n- Notifications for payment failures]:::billingSec
+    G[System Monitoring & Security\n- Load balancing for traffic distribution\n- Logging, error handling\n- AI-driven fraud detection\n- Compliance with GDPR, PCI-DSS, regional data laws]:::sysMonitoring
+
+    %% Flow arrows
+    A -->|User input| B
+    B -->|Recommendations| C
+    C -->|Content delivery| D
+    A -->|User activity| E
+    D -->|Playback| E
+    F -->|Payment processing| A
+    E -->|On engagement| F
+    G -->|Traffic & security monitoring| C
+    G -->|Server health| D
+    
+    %% Style definitions
+    classDef userInter fill:#87CEEB;
+    classDef recEng fill:#90EE90;
+    classDef contentMgmt fill:#FFE135;
+    classDef streamPlayback fill:#FFA500;
+    classDef userEngagement fill:#D3D3D3;
+    classDef billingSec fill:#FF6347;
+    classDef sysMonitoring fill:#D8BFD8;

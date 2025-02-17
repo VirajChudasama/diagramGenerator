@@ -1,0 +1,11 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}}%%
+graph TD
+    A[Application Submitted] -->|Submit| B[Application Review]
+    B -->|Approve| C[Check Credit History]
+    C -->|Pass| D[Loan Approval]
+    C -->|Fail| E[Application Denied]
+    D -->|Disbursement| F[Loan Disbursement]
+    F --> G[Repayment Period]
+    G --> H[Loan Closure]
+    
+    E -->|User Notification| I[End Process]
