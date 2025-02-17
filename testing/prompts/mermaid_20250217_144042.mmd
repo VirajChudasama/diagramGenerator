@@ -1,0 +1,86 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}}%%
+flowchart TD
+    subgraph UserInteraction [User Interaction & Authentication]
+        UI1[Web, Mobile, Smart TV, Gaming Console]:::lightblue
+        UI2[Login (OAuth, Google, Facebook, Email)]:::lightblue
+        UI3[Multi-profile selection]:::lightblue
+        UI4[Secure session handling]:::lightblue
+    end
+
+    subgraph ContentDiscovery [Content Discovery & Recommendation]
+        CD1[Personalized homepage]:::lightgreen
+        CD2[AI recommendation (collaborative filtering, deep learning)]:::lightgreen
+        CD3[Search with filters (genre, language, release year)]:::lightgreen
+        CD4[Trending and Top 10 lists]:::lightgreen
+    end
+
+    subgraph ContentManagement [Content Management & CDN Distribution]
+        CM1[Distributed database storage]:::lightyellow
+        CM2[Content Management System (CMS)]:::lightyellow
+        CM3[Encoding & transcoding for multiple resolutions]:::lightyellow
+        CM4[CDN with edge servers]:::lightyellow
+        CM5[Digital Rights Management (DRM) enforcement]:::lightyellow
+    end
+
+    subgraph StreamingPlayback [Streaming & Playback]
+        SP1[Adaptive Bitrate Streaming]:::lightorange
+        SP2[Video player (subtitles, multi-audio, playback speed)]:::lightorange
+        SP3[Buffering & preloading]:::lightorange
+        SP4[Watch history tracking & resume playback]:::lightorange
+    end
+
+    subgraph UserActivity [User Activity & Engagement Tracking]
+        UA1[Real-time analytics (watch time, session duration)]:::lightgrey
+        UA2[AI insights for recommendations]:::lightgrey
+        UA3[Parental controls & content restrictions]:::lightgrey
+    end
+
+    subgraph BillingManagement [Billing & Subscription Management]
+        BM1[Subscription plans (Basic, Standard, Premium)]:::lightred
+        BM2[Secure payment gateways (Credit/Debit, PayPal, etc.)]:::lightred
+        BM3[Auto-renewal & cancellation options]:::lightred
+        BM4[Notifications for payment failures]:::lightred
+    end
+
+    subgraph SystemMonitoring [System Monitoring & Security]
+        SM1[Load balancing for traffic distribution]:::lightgrey
+        SM2[Logging & error handling]:::lightgrey
+        SM3[Server health monitoring]:::lightgrey
+        SM4[AI-driven fraud detection]:::lightgrey
+        SM5[Compliance (GDPR, PCI-DSS, etc.)]:::lightgrey
+    end
+
+    UI1 --> UI2
+    UI2 --> UI3
+    UI3 --> UI4
+    
+    UI4 --> CD1
+    CD1 --> CD2
+    CD2 --> CD3
+    CD2 --> CD4
+    
+    CD4 --> CM1
+    CM1 --> CM2
+    CM2 --> CM3
+    CM3 --> CM4
+    CM4 --> CM5
+    
+    CM5 --> SP1
+    SP1 --> SP2
+    SP2 --> SP3
+    SP2 --> SP4
+
+    SP4 --> UA1
+    UA1 --> UA2
+    UA3 --> UA2
+    
+    UA1 --> BM1
+    BM1 --> BM2
+    BM2 --> BM3
+    BM1 --> BM4
+    
+    BM1 --> SM1
+    SM1 --> SM2
+    SM2 --> SM3
+    SM3 --> SM4
+    SM4 --> SM5

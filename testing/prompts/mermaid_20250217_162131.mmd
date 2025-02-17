@@ -1,0 +1,68 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}}%%
+flowchart TD
+    subgraph User Interaction [User Interaction]
+        style User Interaction fill:#87CEEB
+        A[Web, Mobile, Smart TV, Gaming Console] -->|Access| B[OAuth Login]
+        B -->|Choose| C[Login via Google, Facebook, Email]
+        C -->|Select Profile| D[Multi-profile Selection]
+        D -->|Start Session| E[Secure Session Handling]
+    end
+
+    subgraph Recommendation Engine [Content Discovery & Recommendation]
+        style Recommendation Engine fill:#87CEEB
+        F[Personalized Homepage] -->|Analyzed by| G[AI-powered Recommendation]
+        G -->|Data from| H[Collaborative Filtering & Deep Learning]
+        F -->|Search| I[Filters: Genre, Language, Release Year]
+        F -->|Show| J[Trending & Top 10 Lists]
+    end
+
+    subgraph Content Management [Content Management & CDN Distribution]
+        style Content Management fill:#87CEEB
+        K[Content Storage in Distributed Database] -->|Processed by| L[Content Management System]
+        L -->|Encoded &| M[Transcoding for Multiple Resolutions]
+        M -->|Distributed via| N[CDN Integration with Edge Servers]
+        N -->|Ensures| O[DRM Enforcement]
+    end
+
+    subgraph Streaming [Streaming & Playback]
+        style Streaming fill:#87CEEB
+        P[Adaptive Bitrate Streaming] -->|Facilitated by| Q[Dynamic Quality Adjustment]
+        R[Video Player] -->|Includes| S[Subtitles, Multi-Audio Tracks]
+        R -->|Features| T[Playback Speed Control]
+        R -->|Handles| U[Buffering & Preloading]
+        V[Watch History Tracking] -->|Supports| W[Resume Playback]
+    end
+
+    subgraph User Activity [User Activity & Engagement Tracking]
+        style User Activity fill:#87CEEB
+        X[Real-time Analytics on Watch Time] -->|Tracks| Y[Session Duration]
+        Y -->|Utilizes| Z[AI-powered Insights for Recommendations]
+        AA[Parental Controls & Restrictions] -->|Manage| X
+    end
+
+    subgraph Billing [Billing & Subscription Management]
+        style Billing fill:#87CEEB
+        AB[Subscription Plans: Basic, Standard, Premium] -->|Process| AC[Secure Payment Gateways]
+        AC -->|Includes| AD[Credit/Debit Cards, PayPal, Apple Pay, Google Pay]
+        AE[Auto-renewal & Cancellation Options] -->|Alert| AF[Notifications for Payment Failures]
+    end
+
+    subgraph Monitoring [System Monitoring & Security]
+        style Monitoring fill:#87CEEB
+        AG[Load Balancing] -->|Distributes| AH[Traffic]
+        AI[Logging & Error Handling] -->|Monitors| AJ[Server Health]
+        AK[AI-driven Fraud Detection] -->|Ensures| AL[Security]
+        AM[Compliance with GDPR, PCI-DSS, and Regional Laws] -->|Maintained by| AG
+    end
+
+    %% Data flow arrows
+    E --> F
+    H --> G
+    G --> K
+    O --> P
+    W --> X
+    AF --> AB
+    AL --> AG
+
+    %% Styling arrows
+    style arrow fill:#FF4500

@@ -1,0 +1,24 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}}%%
+flowchart TD
+    A[User Interaction & Authentication\n(Light Blue)]:::userInteraction -->|Login via OAuth, Google, Facebook, Email| B[Content Discovery & Recommendation\n(Light Green)]:::contentDiscovery
+    A -->|Multi-profile selection\nSecure session handling| B
+    B -->|Personalized homepage\nAI-powered recommendation| C[Content Management & CDN Distribution\n(Light Yellow)]:::contentManagement
+    B -->|Search with filters\nTrending and Top 10 lists| C
+    C -->|Stored in distributed database\nProcessed via CMS| D[Streaming & Playback\n(Light Orange)]:::streamingPlayback
+    C -->|Encoding & transcoding\nCDN integration| D
+    D -->|Adaptive Bitrate Streaming\nPlayback features| E[User Activity & Engagement Tracking\n(Light Grey)]:::userActivity
+    D -->|Buffering, preloading\nWatch history tracking| E
+    E -->|Real-time analytics\nAI-powered insights| F[Billing & Subscription Management\n(Light Red)]:::billing
+    E -->|Parental controls\nContent restrictions| F
+    F -->|Subscription plans\nSecure payment gateways| G[System Monitoring & Security\n(Light Red)]:::systemMonitoring
+    F -->|Auto-renewal\nCancellation options| G
+    G -->|Load balancing\nError handling| A
+    G -->|AI-driven fraud detection\nCompliance monitoring| A
+
+    classDef userInteraction fill:#87CEEB,stroke:#000,stroke-width:2px;
+    classDef contentDiscovery fill:#90EE90,stroke:#000,stroke-width:2px;
+    classDef contentManagement fill:#FFD700,stroke:#000,stroke-width:2px;
+    classDef streamingPlayback fill:#FFA500,stroke:#000,stroke-width:2px;
+    classDef userActivity fill:#D3D3D3,stroke:#000,stroke-width:2px;
+    classDef billing fill:#FF6347,stroke:#000,stroke-width:2px;
+    classDef systemMonitoring fill:#FF4500,stroke:#000,stroke-width:2px;

@@ -1,0 +1,58 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500', 'tertiaryColor': '#FF4500'}}}%%
+flowchart TD
+    subgraph User_Interaction[User Interaction]
+    direction TB
+        A1[Web, Mobile, Smart TV, Gaming Console] --> A2[Login via OAuth, Google, Facebook, Email]
+        A2 --> A3[Multi-profile selection]
+        A3 --> A4[Secure session handling]
+    end
+
+    subgraph Content_Discovery[Content Discovery & Recommendation]
+    direction TB
+        B1[Personalized homepage] --> B2[AI-powered recommendation\nusing collaborative filtering & deep learning]
+        B2 --> B3[Search with filters:\ngenre, language, release year]
+        B3 --> B4[Trending and Top 10 lists]
+    end
+
+    subgraph Content_Management[Content Management & CDN Distribution]
+    direction TB
+        C1[Content stored in a distributed database] --> C2[Processed via CMS]
+        C2 --> C3[Encoding & transcoding\nfor multiple resolutions]
+        C3 --> C4[CDN integration with edge servers]
+        C4 --> C5[DRM enforcement]
+    end
+    
+    subgraph Streaming_Playback[Streaming & Playback]
+    direction TB
+        D1[Adaptive Bitrate Streaming\nfor dynamic quality] --> D2[Video player with:\nsubtitles, multi-audio tracks,\nplayback speed control]
+        D2 --> D3[Buffering, preloading\nfor seamless experience]
+        D3 --> D4[Watch history tracking & resume playback]
+    end
+    
+    subgraph User_Activity[User Activity & Engagement Tracking]
+    direction TB
+        E1[Real-time analytics on watch time,\nsession duration] --> E2[AI-powered insights\nfor better recommendations]
+        E2 --> E3[Parental controls &\ncontent restrictions]
+    end
+    
+    subgraph Billing_Management[Billing & Subscription Management]
+    direction TB
+        F1[Subscription plans –\nBasic, Standard, Premium] --> F2[Secure payment gateways:\nCredit/Debit Cards, PayPal, Apple Pay, Google Pay]
+        F2 --> F3[Auto-renewal & cancellation options]
+        F3 --> F4[Notifications for payment failures]
+    end
+    
+    subgraph System_Monitoring[System Monitoring & Security]
+    direction TB
+        G1[Load balancing for traffic distribution] --> G2[Logging, error handling,\nserver health monitoring]
+        G2 --> G3[AI-driven fraud detection]
+        G3 --> G4[Compliance with GDPR,\nPCI-DSS, and regional data laws]
+    end
+
+    %% Define the flow and connections %%
+    A4 --> B1
+    B4 --> C1
+    C5 --> D1
+    D4 --> E1
+    E3 --> F1
+    F4 --> G1

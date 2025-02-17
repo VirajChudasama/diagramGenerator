@@ -1,0 +1,50 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'tertiaryColor': '#FF4500'}}}%%
+flowchart TD
+    A[User Interaction & Authentication]:::userInteraction -->|Interact via| B[Web, Mobile, Smart TV, Gaming Console]:::userInteraction
+    B -->|Login with| C[OAuth, Google, Facebook, Email]:::userInteraction
+    C -->|Select Profile| D[Multi-profile selection]:::userInteraction
+    D -->|Secure Session| E[Secure session handling]:::userInteraction
+
+    F[Content Discovery & Recommendation]:::recommendation -->|Personalized by| A
+    F -->|Fill homepage with| G[Personalized homepage]:::recommendation
+    G -->|AI Recommendations| H[AI-powered recommendation using collaborative filtering & deep learning]:::recommendation
+    H -->|Search with| I[Filters: genre, language, release year]:::recommendation
+    I -->|Display| J[Trending and Top 10 lists]:::recommendation
+
+    K[Content Management & CDN Distribution]:::contentManagement -->|Fetch Content from| F
+    K -->|Store in| L[Distributed Database]:::contentManagement
+    L -->|Process via| M[Content Management System (CMS)]:::contentManagement
+    M -->|Encode & Transcode| N[Multiple Resolutions]:::contentManagement
+    N -->|Distribute with| O[CDN Integration with Edge Servers]:::contentManagement
+    O -->|Enforce| P[DRM Enforcement]:::contentManagement
+
+    Q[Streaming & Playback]:::streaming -->|Stream content via| K
+    Q -->|Adaptive Bitrate| R[Streaming]:::streaming
+    R -->|Playback with| S[Video Player with Subtitles, Multi-Audio Tracks, Playback Speed Control]:::streaming
+    S -->|Manage| T[Buffering & Preloading for Seamless Experience]:::streaming
+    T -->|Track| U[Watch History Tracking & Resume Playback]:::streaming
+
+    V[User Activity & Engagement Tracking]:::userAnalytics -->|Gather Data from| Q
+    V -->|Analytics on| W[Watch Time, Session Duration]:::userAnalytics
+    W -->|Provide| X[AI-Powered Insights for Better Recommendations]:::userAnalytics
+    X -->|Set| Y[Parental Controls & Content Restrictions]:::userAnalytics
+
+    Z[Billing & Subscription Management]:::billing -->|Manage Subscriptions| V
+    Z -->|Choose Plan| AA[Subscription Plans: Basic, Standard, Premium]:::billing
+    AA -->|Process with| AB[Secure Payment Gateways - Credit/Debit Cards, PayPal, Apple Pay, Google Pay]:::billing
+    AB -->|Handle| AC[Auto-renewal & Cancellation Options]:::billing
+    AC -->|Send| AD[Notifications for Payment Failures]:::billing
+    
+    AE[System Monitoring & Security]:::security -->|Monitor| Z
+    AE -->|Implement| AF[Load Balancing for Traffic Distribution]:::security
+    AF -->|Log| AG[Error Handling & Server Health Monitoring]:::security
+    AG -->|Detect| AH[AI-Driven Fraud Detection]:::security
+    AH -->|Ensure Compliance with| AI[GDPR, PCI-DSS, Regional Data Laws]:::security
+
+    classDef userInteraction fill:#87CEEB;
+    classDef recommendation fill:#90EE90;
+    classDef contentManagement fill:#FFEFD5;
+    classDef streaming fill:#FFA07A;
+    classDef userAnalytics fill:#D3D3D3;
+    classDef billing fill:#FF6347;
+    classDef security fill:#FFB6C1;

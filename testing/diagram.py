@@ -19,7 +19,7 @@ def generate_image():
         box_color = data.get("box_color", "#000000")
         add_logo = data.get("add_logo", False)
         prompt_arg = data.get("prompt", "")
-        
+        print(f"Prompt:{prompt_arg}")
         img_path = None
         if diagram_type == "mermaid":
             img_path = generate_mermaid_diagram(background_color, arrow_color, box_color, prompt_arg)

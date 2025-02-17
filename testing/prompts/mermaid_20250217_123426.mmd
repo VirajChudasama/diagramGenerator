@@ -1,0 +1,9 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}}%%
+graph TD
+    A[Start] --> B[Process Data]
+    B --> C{Is Data Valid?}
+    C -->|Yes| D[Store Data]
+    C -->|No| E[Log Error]
+    D --> F[Notify User]
+    E --> F
+    F --> G[End]

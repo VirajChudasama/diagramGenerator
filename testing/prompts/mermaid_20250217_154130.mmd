@@ -1,0 +1,87 @@
+%%{init: {"theme": "base", "themeVariables": {"background": "#F5F5DC", "primaryColor": "#87CEEB"}}}%%
+classDef arrowStyle stroke:#FF4500,stroke-width:2px; 
+linkStyle default stroke:#FF4500,stroke-width:2px;
+
+flowchart TD
+    subgraph UserInteraction[User Interaction]
+        UI1[Users access via Web, Mobile, Smart TV, Gaming Console]
+        UI2[Login via OAuth, Google, Facebook, Email]
+        UI3[Multi-profile selection]
+        UI4[Secure session handling]
+    end
+
+    subgraph RecommendationEngine[Content Discovery & Recommendation]
+        RE1[Personalized homepage]
+        RE2[AI-powered recommendation using collaborative filtering & deep learning]
+        RE3[Search with filters: genre, language, release year]
+        RE4[Trending and Top 10 lists]
+    end
+
+    subgraph ContentManagement[Content Management & CDN Distribution]
+        CM1[Content stored in a distributed database]
+        CM2[Processed via CMS]
+        CM3[Encoding & transcoding for multiple resolutions]
+        CM4[CDN integration with edge servers]
+        CM5[DRM enforcement]
+    end
+
+    subgraph StreamingPlayback[Streaming & Playback]
+        SP1[Adaptive Bitrate Streaming for dynamic quality]
+        SP2[Video player with subtitles, multi-audio tracks, playback speed control]
+        SP3[Buffering, preloading for seamless experience]
+        SP4[Watch history tracking & resume playback]
+    end
+
+    subgraph UserActivity[User Activity & Engagement Tracking]
+        UA1[Real-time analytics on watch time, session duration]
+        UA2[AI-powered insights for better recommendations]
+        UA3[Parental controls & content restrictions]
+    end
+
+    subgraph BillingManagement[Billing & Subscription Management]
+        BM1[Subscription plans – Basic, Standard, Premium]
+        BM2[Secure payment gateways – Credit/Debit Cards, PayPal, Apple Pay, Google Pay]
+        BM3[Auto-renewal & cancellation options]
+        BM4[Notifications for payment failures]
+    end
+
+    subgraph SystemMonitoring[System Monitoring & Security]
+        SM1[Load balancing for traffic distribution]
+        SM2[Logging, error handling, server health monitoring]
+        SM3[AI-driven fraud detection]
+        SM4[Compliance with GDPR, PCI-DSS, and regional data laws]
+    end
+
+    UI1 --> UI2
+    UI2 --> UI3
+    UI3 --> UI4
+    UI4 --> RE1
+    
+    RE1 --> RE2
+    RE2 --> RE3
+    RE2 --> RE4
+    RE1 --> CM1
+
+    CM1 --> CM2
+    CM2 --> CM3
+    CM3 --> CM4
+    CM4 --> CM5
+    CM5 --> SP1
+
+    SP1 --> SP2
+    SP2 --> SP3
+    SP3 --> SP4
+    SP4 --> UA1
+
+    UA1 --> UA2
+    UA1 --> UA3
+    UA1 --> BM1
+
+    BM1 --> BM2
+    BM2 --> BM3
+    BM3 --> BM4
+    BM4 --> SM2
+    
+    SM1 --> SM2
+    SM2 --> SM3
+    SM3 --> SM4

@@ -1,0 +1,10 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}}%%
+flowchart TD
+    A[Start] --> B{Decision}
+    B -->|Yes| C[Process A]
+    B -->|No| D[Process B]
+    C --> E{Final Decision}
+    D --> E
+    E -->|Accept| F[End]
+    E -->|Reject| G[Review]
+    G --> F

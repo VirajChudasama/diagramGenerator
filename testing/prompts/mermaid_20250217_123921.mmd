@@ -1,0 +1,9 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}{'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'tertiaryColor': '#FF4500'}}%%
+flowchart TD
+    A[Start] --> B{Is it working?}
+    B -- Yes --> C[Continue]
+    B -- No --> D[Debugging]
+    D --> E{Is it fixed?}
+    E -- Yes --> C
+    E -- No --> D
+    C --> F[End]

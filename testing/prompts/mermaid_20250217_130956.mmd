@@ -1,0 +1,8 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#000000', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}}%%
+flowchart TD
+    A[Start] --> B[Process 1\nDo something]
+    B --> C{Decision?\nYes or No}
+    C -->|Yes| D[Process 2\nContinue processing]
+    C -->|No| E[Process 3\nHandle alternative]
+    D --> F[End]
+    E --> F

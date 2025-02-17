@@ -1,0 +1,23 @@
+@startuml
+!define RECTANGLE_COLOR #87CEEB
+!define ARROW_COLOR #FF4500
+!define BACKGROUND_COLOR #F5F5DC
+
+skinparam backgroundColor BACKGROUND_COLOR
+skinparam arrowColor ARROW_COLOR
+skinparam rectangle {
+    BackgroundColor RECTANGLE_COLOR
+    BorderColor black
+}
+
+rectangle "Box 1" as box1 {
+    rectangle "Sub Box 1.1" as subBox1_1
+    rectangle "Sub Box 1.2" as subBox1_2
+}
+
+rectangle "Box 2" as box2
+
+box1 --> box2 : "Arrow from Box 1"
+subBox1_1 --> subBox1_2 : "Arrow from Sub Box 1.1"
+
+@enduml

@@ -1,0 +1,7 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}{'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'tertiaryColor': '#FF4500'}}}%%
+flowchart TD
+    A[Start] --> B{Decision}
+    B -->|Yes| C[Action A]
+    B -->|No| D[Action B]
+    C --> E[End]
+    D --> E

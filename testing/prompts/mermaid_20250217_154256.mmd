@@ -1,0 +1,58 @@
+%%{init: {"theme": "base", "themeVariables": {"background": "#F5F5DC", "primaryColor": "#87CEEB"}}}%%
+flowchart TD
+    subgraph User_Interaction["User Interaction & Authentication"]
+        style User_Interaction fill:#87CEEB
+        A1[Web, Mobile, Smart TV, Gaming Console] --> A2[Login via OAuth, Google, Facebook, Email]
+        A2 --> A3[Multi-profile selection]
+        A3 --> A4[Secure session handling]
+    end
+
+    subgraph Content_Discovery["Content Discovery & Recommendation"]
+        style Content_Discovery fill:#87CEEB
+        B1[Personalized homepage] --> B2[AI-powered recommendation using collaborative filtering & deep learning]
+        B1 --> B3[Search with filters: genre, language, release year]
+        B1 --> B4[Trending and Top 10 lists]
+    end
+
+    subgraph Content_Management["Content Management & CDN Distribution"]
+        style Content_Management fill:#87CEEB
+        C1[Content stored in distributed database] --> C2[Processed via CMS]
+        C2 --> C3[Encoding & transcoding for multiple resolutions]
+        C3 --> C4[CDN integration with edge servers]
+        C4 --> C5[DRM enforcement]
+    end
+
+    subgraph Streaming_Playback["Streaming & Playback"]
+        style Streaming_Playback fill:#87CEEB
+        D1[Adaptive Bitrate Streaming for dynamic quality] --> D2[Video player with subtitles, multi-audio tracks, playback speed control]
+        D2 --> D3[Buffering, preloading for seamless experience]
+        D2 --> D4[Watch history tracking & resume playback]
+    end
+
+    subgraph User_Activity["User Activity & Engagement Tracking"]
+        style User_Activity fill:#87CEEB
+        E1[Real-time analytics on watch time, session duration] --> E2[AI-powered insights for better recommendations]
+        E2 --> E3[Parental controls & content restrictions]
+    end
+
+    subgraph Billing_Management["Billing & Subscription Management"]
+        style Billing_Management fill:#87CEEB
+        F1[Subscription plans: Basic, Standard, Premium] --> F2[Secure payment gateways: Credit/Debit Cards, PayPal, Apple Pay, Google Pay]
+        F2 --> F3[Auto-renewal & cancellation options]
+        F3 --> F4[Notifications for payment failures]
+    end
+
+    subgraph System_Monitoring["System Monitoring & Security"]
+        style System_Monitoring fill:#87CEEB
+        G1[Load balancing for traffic distribution] --> G2[Logging, error handling, server health monitoring]
+        G2 --> G3[AI-driven fraud detection]
+        G3 --> G4[Compliance with GDPR, PCI-DSS, and regional data laws]
+    end
+
+    A4 --> B1
+    B2 --> C1
+    C1 --> D1
+    D1 --> E1
+    F4 --> System_Monitoring
+    E2 --> F3
+    G1 --> System_Monitoring

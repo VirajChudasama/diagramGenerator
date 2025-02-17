@@ -1,0 +1,58 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}}%%
+flowchart TD
+    A[User Interaction & Authentication]:::userInteraction --> B[Content Discovery & Recommendation]:::recommendationEngine
+    B --> C[Content Management & CDN Distribution]:::contentManagement
+    C --> D[Streaming & Playback]:::streamingPlayback
+    D --> E[User Activity & Engagement Tracking]:::userEngagement
+    E --> F[Billing & Subscription Management]:::billingSecurity
+    F --> A
+
+    A -->|Login via OAuth, Google, Facebook, Email| A1[Multi-profile selection]:::userInteraction
+    A1 -->|Secure session handling| A2[User Session]:::userInteraction
+    
+    B -->|AI-powered recommendations| B1[Personalized homepage]:::recommendationEngine
+    B -->|Search with filters| B2[Search & Filter Options]:::recommendationEngine
+    B -->|Trending & Top 10 lists| B3[Trending Content]:::recommendationEngine
+    
+    C -->|Stored in distributed database| C1[Content Database]:::contentManagement
+    C -->|Encoding & transcoding| C2[Multiple Resolutions]:::contentManagement
+    C -->|CDN integration| C3[Edge Servers]:::contentManagement
+    C -->|DRM enforcement| C4[Content Security]:::contentManagement
+
+    D -->|Adaptive Bitrate Streaming| D1[Dynamic Quality]:::streamingPlayback
+    D -->|Video player controls| D2[Playback Features]:::streamingPlayback
+    D -->|Buffering & preloading| D3[Seamless Experience]:::streamingPlayback
+    D -->|Watch history & resume playback| D4[Watch Tracking]:::streamingPlayback
+
+    E -->|Real-time analytics| E1[Analytics Dashboard]:::userEngagement
+    E -->|AI insights| E2[Better Recommendations]:::userEngagement
+    E -->|Parental control features| E3[Content Restrictions]:::userEngagement
+
+    F -->|Subscription plans| F1[Basic, Standard, Premium]:::billingSecurity
+    F -->|Secure payment gateways| F2[Payments Options]:::billingSecurity
+    F -->|Auto-renewal & cancellation| F3[Subscription Management]:::billingSecurity
+    F -->|Notifications for payment issues| F4[Payment Alerts]:::billingSecurity
+
+    subgraph Legends
+    direction LR
+        userInteraction[User Interaction]:::userInteraction
+        recommendationEngine[Recommendation Engine]:::recommendationEngine
+        contentManagement[Content Management & CDN]:::contentManagement
+        streamingPlayback[Streaming & Playback]:::streamingPlayback
+        userEngagement[User Activity & Engagement Tracking]:::userEngagement
+        billingSecurity[Billing & Security]:::billingSecurity
+    end
+
+    classDef userInteraction fill:#87CEEB;
+    classDef recommendationEngine fill:#90EE90;
+    classDef contentManagement fill:#FFFFE0;
+    classDef streamingPlayback fill:#FFA07A;
+    classDef userEngagement fill:#D3D3D3;
+    classDef billingSecurity fill:#FFCCCC;
+
+    class A,A1,A2 userInteraction;
+    class B,B1,B2,B3 recommendationEngine;
+    class C,C1,C2,C3,C4 contentManagement;
+    class D,D1,D2,D3,D4 streamingPlayback;
+    class E,E1,E2,E3 userEngagement;
+    class F,F1,F2,F3,F4 billingSecurity;

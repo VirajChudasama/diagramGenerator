@@ -1,0 +1,61 @@
+%%{init: {"theme": "base", "themeVariables": {"background": "#F5F5DC", "primaryColor": "#87CEEB"}}}%%
+classDef arrowStyle stroke:#FF4500,stroke-width:2px; linkStyle default stroke:#FF4500,stroke-width:2px;
+
+flowchart TD
+    subgraph UserInteraction [User Interaction & Authentication]
+        direction TB
+        A1[Users access via Web, Mobile, Smart TV, Gaming Console]:::lightblue --> A2[Login via OAuth, Google, Facebook, Email]:::lightblue
+        A2 --> A3[Multi-profile selection]:::lightblue
+        A3 --> A4[Secure session handling]:::lightblue
+    end
+
+    subgraph ContentDiscovery [Content Discovery & Recommendation]
+        direction TB
+        B1[Personalized homepage]:::lightgreen --> B2[AI-powered recommendation using collaborative filtering & deep learning]:::lightgreen
+        B2 --> B3[Search with filters - genre, language, release year]:::lightgreen
+        B3 --> B4[Trending and Top 10 lists]:::lightgreen
+    end
+
+    subgraph ContentManagement [Content Management & CDN Distribution]
+        direction TB
+        C1[Content stored in a distributed database]:::lightyellow --> C2[Processed via CMS]:::lightyellow
+        C2 --> C3[Encoding & transcoding for multiple resolutions]:::lightyellow
+        C3 --> C4[CDN integration with edge servers]:::lightyellow
+        C4 --> C5[DRM enforcement]:::lightyellow
+    end
+
+    subgraph StreamingPlayback [Streaming & Playback]
+        direction TB
+        D1[Adaptive Bitrate Streaming for dynamic quality]:::lightorange --> D2[Video player with subtitles, multi-audio tracks, playback speed control]:::lightorange
+        D2 --> D3[Buffering, preloading for seamless experience]:::lightorange
+        D3 --> D4[Watch history tracking & resume playback]:::lightorange
+    end
+
+    subgraph UserActivity [User Activity & Engagement Tracking]
+        direction TB
+        E1[Real-time analytics on watch time, session duration]:::lightgrey --> E2[AI-powered insights for better recommendations]:::lightgrey
+        E2 --> E3[Parental controls & content restrictions]:::lightgrey
+    end
+
+    subgraph Billing [Billing & Subscription Management]
+        direction TB
+        F1[Subscription plans - Basic, Standard, Premium]:::lightred --> F2[Secure payment gateways - Credit/Debit Cards, PayPal, Apple Pay, Google Pay]:::lightred
+        F2 --> F3[Auto-renewal & cancellation options]:::lightred
+        F3 --> F4[Notifications for payment failures]:::lightred
+    end
+
+    subgraph SystemMonitoring [System Monitoring & Security]
+        direction TB
+        G1[Load balancing for traffic distribution]:::lightred --> G2[Logging, error handling, server health monitoring]:::lightred
+        G2 --> G3[AI-driven fraud detection]:::lightred
+        G3 --> G4[Compliance with GDPR, PCI-DSS, and regional data laws]:::lightred
+    end
+
+    %% Connections
+    A4 -->|User Credentials| B1
+    B4 -->|Recommendations| C1
+    C5 -->|DRM Info| D1
+    D4 -->|Resume Info| E1
+    E3 -->|User Feedback| B2
+    F4 -->|Payment Updates| G1
+    G4 -->|Compliance Info| A4

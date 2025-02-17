@@ -1,0 +1,82 @@
+@startuml
+skinparam backgroundColor #F5F5DC
+skinparam arrowColor #FF4500
+skinparam rectangle {
+    BackgroundColor #87CEEB
+    BorderColor black
+}
+
+rectangle "User Interaction & Authentication" as userInteraction {
+    rectangle "Web" 
+    rectangle "Mobile" 
+    rectangle "Smart TV" 
+    rectangle "Gaming Console" 
+    rectangle "Login & Authentication" 
+    rectangle "Multi-profile Selection" 
+    rectangle "Secure User Session Handling" 
+}
+
+rectangle "Content Discovery & Recommendation" as contentDiscovery {
+    rectangle "Personalized Homepage" 
+    rectangle "AI-powered Recommendation Engine" 
+    rectangle "Search Functionality" 
+    rectangle "Trending & Top 10 Lists" 
+}
+
+rectangle "Content Management & CDN Distribution" as contentManagement {
+    rectangle "Distributed Database" 
+    rectangle "Content Management System (CMS)" 
+    rectangle "Encoding & Transcoding Pipeline" 
+    rectangle "Content Delivery Network (CDN)" 
+    rectangle "DRM Protection" 
+}
+
+rectangle "Streaming & Playback" as streaming {
+    rectangle "Adaptive Bitrate Streaming (ABR)" 
+    rectangle "Video Player Features" 
+    rectangle "Buffering & Preloading" 
+    rectangle "Watch History Tracking" 
+}
+
+rectangle "User Activity & Engagement Tracking" as activityTracking {
+    rectangle "Real-time Analytics" 
+    rectangle "AI-powered Insights" 
+    rectangle "Parental Controls" 
+}
+
+rectangle "Billing & Subscription Management" as billingManagement {
+    rectangle "Subscription Plans" 
+    rectangle "Secure Payment Gateways" 
+    rectangle "Auto-renewal Handling" 
+    rectangle "User Notifications" 
+}
+
+rectangle "System Monitoring & Security" as systemMonitoring {
+    rectangle "Load Balancing" 
+    rectangle "Logging & Error Handling" 
+    rectangle "AI-driven Fraud Detection" 
+    rectangle "Compliance with Regulations" 
+}
+
+' User interaction arrows
+userInteraction --contentDiscovery : "User Requests Content"
+userInteraction --billingManagement : "User Subscription Info"
+userInteraction --systemMonitoring : "User Activity Data"
+
+' Content Discovery arrows 
+contentDiscovery --contentManagement : "Content Requests"
+
+' Content Management arrows
+contentManagement --streaming : "Content Delivery"
+
+' Streaming arrows
+streaming --activityTracking : "User Engagement Data"
+
+' Billing arrows
+billingManagement --userInteraction : "Payment Confirmation"
+billingManagement --systemMonitoring : "Transaction Monitoring"
+
+' System Monitoring & Security arrows
+systemMonitoring --streaming : "User Session Security"
+
+@enduml

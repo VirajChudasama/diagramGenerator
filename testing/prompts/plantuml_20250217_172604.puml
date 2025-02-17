@@ -1,0 +1,18 @@
+@startuml
+!define RECTANGLE_COLOR #87CEEB
+!define ARROW_COLOR #FF4500
+skinparam backgroundColor #F5F5DC
+skinparam ArrowColor ARROW_COLOR
+skinparam rectangle {
+    BackgroundColor RECTANGLE_COLOR
+    BorderColor black
+}
+
+rectangle "Box 1" as box1
+rectangle "Box 2" as box2
+rectangle "Box 3" as box3
+
+box1 --> box2 : Link to
+box2 --> box3 : Link to
+
+@enduml

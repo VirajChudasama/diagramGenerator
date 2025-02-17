@@ -9,10 +9,10 @@ from datetime import datetime
 
 
 # Define paths
-MERMAID_FILE_PATH = Path(r"C:\\testing\\prompts")
-IMAGE_FILE_PATH = Path(r"C:\\testing\\images")
+MERMAID_FILE_PATH = Path(r"C:\\Diagramgenerator\\testing\\prompts")
+IMAGE_FILE_PATH = Path(r"C:\\Diagramgenerator\\testing\\images")
 
-LOGO_PATH = Path(r"C:\\testing\\logo.jpg")
+LOGO_PATH = Path(r"C:\\Diagramgenerator\\testing\\dark-logo.png")
 
 IMAGE_FILE_PATH.mkdir(parents=True, exist_ok=True)
 MERMAID_FILE_PATH.mkdir(parents=True, exist_ok=True)
@@ -45,6 +45,10 @@ def addLogo(filePath, background_color ):
     diagram = cv2.imread(str(filePath))
     logo = cv2.imread(str(LOGO_PATH), cv2.IMREAD_UNCHANGED)
 
+    if logo is None:
+        print(f"Error: Could not load logo from {LOGO_PATH}. Check file path and integrity.")
+        return None
+    
     # Get image dimensions
     h_img, w_img, _ = diagram.shape
 
@@ -58,8 +62,18 @@ def addLogo(filePath, background_color ):
     )
 
     # Set a fixed logo size (static dimensions)
-    fixed_logo_width = 120  # Fixed width in pixels
-    fixed_logo_height = 60  # Fixed height in pixels
+    if w_img <= 400 and h_img <= 300:
+        fixed_logo_width = 50
+        fixed_logo_height = 20
+    elif w_img <= 800 and h_img <= 600:
+        fixed_logo_width = 75
+        fixed_logo_height = 30
+    elif w_img <= 1200 and h_img <= 900:
+        fixed_logo_width = 100
+        fixed_logo_height = 40
+    else:
+        fixed_logo_width = 150
+        fixed_logo_height = 60  
     logo = cv2.resize(logo, (fixed_logo_width, fixed_logo_height))
 
     # Define fixed logo positions **AFTER** adding padding
@@ -129,96 +143,189 @@ def generate_image_from_kroki(diagram_type, diagram_code, output_path):
         print(f"Failed to generate {diagram_type} image. HTTP Status: {response.status_code}, Response: {response.text}")
 
 
-def generate_mermaid_diagram(background_color, arrow_color, box_color, custom_prompt=None):
-    """Generates a Mermaid diagram with dynamic colors and a custom prompt."""
-    timestamp = get_timestamp()
-    mmd_path = MERMAID_FILE_PATH / f"mermaid_{timestamp}.mmd"
-    img_path = IMAGE_FILE_PATH / f"mermaid_{timestamp}.png"
+def generate_mermaid_diagram(background_color, arrow_color, box_color, custom_prompt=None, retry_count=3):
+    """Generates a Mermaid diagram with dynamic colors and a custom prompt, with retry logic for syntax errors."""
+    try:
+        if retry_count <= 0:
+            raise RuntimeError("Max retry attempts reached. Aborting diagram generation.")
 
-    # Use custom prompt if provided, otherwise use default
-    mermaid_prompt = f"{custom_prompt} Use the following styles: " \
-                 f"Background Color: `{background_color}`, Arrows: `{arrow_color}`, Boxes: `{box_color}`. " \
-                 "Ensure the diagram is **fully correct**, avoiding invalid syntax. " \
-                 "Use `\\n` for multi-line text (no `<br>`). " \
-                 f"Format it as a **flowchart** and apply styling using `%%{{init: {{'theme': 'base', 'themeVariables': {{'background': '{background_color}', 'primaryColor': '{box_color}', 'edgeLabelBackground': '{arrow_color}'}}}}" \
-                 f"{{'background': '{background_color}', 'primaryColor': '{box_color}', 'tertiaryColor': '{arrow_color}'}}}}}}%%`."
+        timestamp = get_timestamp()
+        mmd_path = MERMAID_FILE_PATH / f"mermaid_{timestamp}.mmd"
+        img_path = IMAGE_FILE_PATH / f"mermaid_{timestamp}.png"
 
-    response = generate_diagram(mermaid_prompt)
+        # Use custom prompt if provided, otherwise use default
+        mermaid_prompt = f"{custom_prompt} Use the following styles: " \
+                     f"Background Color: `{background_color}`, Arrows: `{arrow_color}`, Boxes: `{box_color}`. " \
+                     "Ensure the diagram is **fully correct**, avoiding invalid syntax. " \
+                     "Use `\\n` for multi-line text (no `<br>`). " \
+                     f"Format it as a **flowchart** and apply styling using `%%{{init: {{'theme': 'base', 'themeVariables': {{'background': '{background_color}', 'primaryColor': '{box_color}', 'edgeLabelBackground': '{arrow_color}'}}}}" \
+                     f"{{'background': '{background_color}', 'primaryColor': '{box_color}', 'tertiaryColor': '{arrow_color}'}}}}}}%%`."
 
-    if "```mermaid" in response:
-        mermaid_code = response.split("```mermaid")[1].split("```")[0].strip()
-    else:
-        print("Error: No Mermaid diagram found in the response.")
-        return None
+        response = generate_diagram(mermaid_prompt)
 
-    save_diagram_code(mermaid_code, mmd_path)
-    generate_image_from_kroki("mermaid", mermaid_code, img_path)
+        if "```mermaid" in response:
+            mermaid_code = response.split("```mermaid")[1].split("```")[0].strip()
+        else:
+            raise ValueError("Error: No Mermaid diagram found in the response.")
 
-    updated_img_path = apply_background_color(img_path, background_color, "mermaid")
+        save_diagram_code(mermaid_code, mmd_path)
 
-    return updated_img_path  # Return updated image path with background color
+        # Ensure file is created before proceeding
+        if not mmd_path.exists():
+            raise FileNotFoundError(f"Error: Mermaid file was not created at {mmd_path}")
+
+        # Generate image
+        try:
+            generate_image_from_kroki("mermaid", mermaid_code, img_path)
+        except Exception as e:
+            error_message = str(e)
+            if "Syntax error in graph" in error_message or "Error 400" in error_message:
+                print(f"Syntax error detected: {error_message}")
+                print("Retrying with adjusted prompt...")
+                return generate_mermaid_diagram(background_color, arrow_color, box_color, custom_prompt, retry_count - 1)
+            else:
+                raise  # Raise other unexpected errors
+
+        # Ensure image is generated before applying background
+        if not img_path.exists():
+            raise FileNotFoundError(f"Error: Image file was not created at {img_path}")
+
+        updated_img_path = apply_background_color(img_path, background_color, "mermaid")
+
+        return updated_img_path  # Return updated image path with background color
+
+    except FileNotFoundError as e:
+        print(e)
+    except ValueError as e:
+        print(e)
+    except RuntimeError as e:
+        print(e)
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        print("Retrying diagram generation...")
+
+        return generate_mermaid_diagram(background_color, arrow_color, box_color, custom_prompt, retry_count - 1)
+
+    return None
 
 
-def generate_plantuml_diagram(background_color, arrow_color, box_color, add_logo, custom_prompt=None):
-    """Generates a PlantUML diagram with dynamic colors and a custom prompt."""
-    timestamp = get_timestamp()
-    puml_path = MERMAID_FILE_PATH / f"plantuml_{timestamp}.puml"
-    img_path = IMAGE_FILE_PATH / f"plantuml_{timestamp}.png"
-
-    # Use custom prompt if provided, otherwise use default
-    plantuml_prompt = f"{custom_prompt} Background Color: {background_color}, Arrows: {arrow_color}, Boxes: {box_color}."
 
 
-    response = generate_diagram(plantuml_prompt)
+def generate_plantuml_diagram(background_color, arrow_color, box_color, custom_prompt=None, retry_count=3):
+    """Generates a PlantUML diagram with dynamic colors and a custom prompt, with retry logic for syntax errors."""
+    print(f"Prompt in generate plantuml{custom_prompt}")
+    try:
+        if retry_count <= 0:
+            raise RuntimeError("Max retry attempts reached. Aborting diagram generation.")
 
-    if "```plantuml" in response:
-        plantuml_code = response.split("```plantuml")[1].split("```")[0].strip()
-    else:
-        print("Error: No PlantUML diagram found in the response.")
-        return None
+        timestamp = get_timestamp()
+        puml_path = MERMAID_FILE_PATH / f"plantuml_{timestamp}.puml"
+        img_path = IMAGE_FILE_PATH / f"plantuml_{timestamp}.png"
+        
+        
+        # Use custom prompt if provided, otherwise use default
+        plantuml_prompt = f"Generate a Plantuml diagram. {custom_prompt} Background Color: {background_color}, Arrows: {arrow_color}, Boxes: {box_color}."
+        
 
-    save_diagram_code(plantuml_code, puml_path)
-    generate_image_from_kroki("plantuml", plantuml_code, img_path)
-    return img_path  # Return image path
+        response = generate_diagram(plantuml_prompt)
+        print(f"Response from generate_diagram: {response}")
+
+        if "```plantuml" in response:
+            plantuml_code = response.split("```plantuml")[1].split("```")[0].strip()
+        else:
+            raise ValueError("Error: No PlantUML diagram found in the response.")
+
+        save_diagram_code(plantuml_code, puml_path)
+
+        # Ensure the PlantUML file is created
+        if not puml_path.exists():
+            raise FileNotFoundError(f"Error: PlantUML file was not created at {puml_path}")
+
+        # Generate the image
+        try:
+            generate_image_from_kroki("plantuml", plantuml_code, img_path)
+        except Exception as e:
+            error_message = str(e)
+            if "Syntax error" in error_message or "Error 400" in error_message:
+                print(f"Syntax error detected: {error_message}")
+                print("Retrying with adjusted prompt...")
+                return generate_plantuml_diagram(background_color, arrow_color, box_color, custom_prompt, retry_count - 1)
+            else:
+                raise  # Raise unexpected errors
+
+        # Ensure the image file is created
+        if not img_path.exists():
+            raise FileNotFoundError(f"Error: Image file was not created at {img_path}")
+
+        return img_path  # Return image path
+
+    except FileNotFoundError as e:
+        print(e)
+    except ValueError as e:
+        print(e)
+    except RuntimeError as e:
+        print(e)
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        print("Retrying diagram generation...")
+
+        return generate_plantuml_diagram(background_color, arrow_color, box_color, custom_prompt, retry_count - 1)
+
+    return None
+
+
 
 
 
 def apply_background_color(image_path, background_color, diagram_type):
-    """
-    Applies a solid background color to the entire image if the diagram type is 'mermaid'.
+    try:
+        if diagram_type.lower() != "mermaid":
+            return image_path  # No need to apply background for PlantUML
 
-    Args:
-        image_path (Path): Path to the generated diagram image.
-        background_color (str): HEX color code for the background.
-        diagram_type (str): Type of diagram ('mermaid' or 'plantuml').
+        if not image_path.exists():
+            raise FileNotFoundError(f"Error: File {image_path} not found.")
 
-    Returns:
-        Path: Updated image path with applied background.
-    """
-    if diagram_type.lower() != "mermaid":
-        return image_path  # No need to apply background for PlantUML
+        # Convert HEX color to BGR
+        bg_color_bgr = hex_to_bgr(background_color)
 
-    bg_color_bgr = hex_to_bgr(background_color)
+        # Load the diagram with unchanged mode to check alpha channel
+        diagram = cv2.imread(str(image_path), cv2.IMREAD_UNCHANGED)
 
-    # Load the diagram
-    diagram = cv2.imread(str(image_path), cv2.IMREAD_UNCHANGED)
+        if diagram is None:
+            raise ValueError(f"Error: Failed to load image from {image_path}")
 
-    # If the image has an alpha channel (transparency), replace it with the background color
-    if diagram.shape[2] == 4:  # RGBA image
-        alpha_channel = diagram[:, :, 3] / 255.0
-        for c in range(3):  # Apply alpha blending to RGB channels
-            diagram[:, :, c] = (alpha_channel * diagram[:, :, c] + (1 - alpha_channel) * bg_color_bgr[c])
-        diagram = diagram[:, :, :3]  # Remove alpha channel after processing
+        h, w = diagram.shape[:2]
 
-    else:
-        # Add a solid background color behind the diagram
-        h, w, _ = diagram.shape
-        background = np.full((h, w, 3), bg_color_bgr, dtype=np.uint8)
-        diagram = cv2.addWeighted(diagram, 1, background, 0.5, 0)  # Blend with the background
+        if diagram.shape[2] == 4:  # RGBA image (has transparency)
+            # Extract alpha channel
+            alpha_channel = diagram[:, :, 3] / 255.0
+            rgb_channels = diagram[:, :, :3]
 
-    # Save the modified image
-    updated_image_path = image_path.parent / f"colored_{image_path.name}"
-    cv2.imwrite(str(updated_image_path), diagram)
+            # Create solid background
+            background = np.full((h, w, 3), bg_color_bgr, dtype=np.uint8)
 
-    print(f"Updated image saved at: {updated_image_path}")
-    return updated_image_path
+            # Blend images using alpha channel
+            blended = (rgb_channels * alpha_channel[:, :, None] + background * (1 - alpha_channel[:, :, None])).astype(np.uint8)
+
+        else:  # If no transparency, overlay the image on solid background
+            background = np.full((h, w, 3), bg_color_bgr, dtype=np.uint8)
+            blended = background.copy()
+            cv2.copyTo(diagram, None, blended)  # Direct copy
+
+        # Save the modified image
+        updated_image_path = image_path.parent / f"colored_{image_path.name}"
+        cv2.imwrite(str(updated_image_path), blended)
+
+        print(f"Updated image saved at: {updated_image_path}")
+        return updated_image_path
+
+    except FileNotFoundError as e:
+        print(e)
+    except ValueError as e:
+        print(e)
+    except AttributeError as e:
+        print(f"Error: Unexpected image format or empty image - {e}")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+
+    return None

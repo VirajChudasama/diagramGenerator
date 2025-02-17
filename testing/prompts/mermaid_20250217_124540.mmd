@@ -1,0 +1,15 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}{'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'tertiaryColor': '#FF4500'}}%%
+flowchart TD
+    A[Start] 
+    B[Process Step 1\nDescription of step 1] 
+    C[Decision Point?\nYes or No?] 
+    D[Process Step 2\nDescription of step 2] 
+    E[Process Step 3\nDescription of step 3] 
+    F[End] 
+
+    A --> B 
+    B --> C 
+    C -- Yes --> D 
+    C -- No --> E 
+    D --> F 
+    E --> F

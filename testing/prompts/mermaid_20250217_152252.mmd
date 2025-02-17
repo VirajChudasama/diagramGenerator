@@ -1,0 +1,69 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'primaryTextColor': '#FF4500', 'edgeLabelBackground': '#FF4500', 'secondaryColor': '#FF4500'}}}%%
+flowchart TD
+    subgraph UserInteraction [User Interaction & Authentication]
+        style UserInteraction fill:#87CEEB
+        A[Users access via\nWeb, Mobile,\nSmart TV, Gaming Console] --> B[Login via\nOAuth, Google,\nFacebook, Email]
+        B --> C[Multi-profile selection]
+        C --> D[Secure session handling]
+    end
+
+    subgraph RecommendationEngine [Content Discovery & Recommendation]
+        style RecommendationEngine fill:#87CEEB
+        E[Personalized homepage] --> F[AI-powered recommendation using\ncollaborative filtering & deep learning]
+        E --> G[Search with filters like\ngenre, language, release year]
+        E --> H[Trending and Top 10 lists]
+    end
+
+    subgraph ContentManagement [Content Management & CDN Distribution]
+        style ContentManagement fill:#FFE135
+        I[Content stored in\na distributed database] --> J[Processed via CMS]
+        J --> K[Encoding & transcoding\nfor multiple resolutions]
+        K --> L[CDN integration with\nedge servers]
+        L --> M[DRM enforcement]
+    end
+
+    subgraph StreamingPlayback [Streaming & Playback]
+        style StreamingPlayback fill:#FFB347
+        N[Adaptive Bitrate Streaming\nfor dynamic quality] --> O[Video player with\nsubtitles, multi-audio tracks]
+        O --> P[Playback speed control]
+        N --> Q[Buffering, preloading\nfor seamless experience]
+        N --> R[Watch history tracking\n& resume playback]
+    end
+
+    subgraph UserActivity [User Activity & Engagement Tracking]
+        style UserActivity fill:#C0C0C0
+        S[Real-time analytics on\nwatch time, session duration] --> T[AI-powered insights for\nbetter recommendations]
+        S --> U[Parental controls &\ncontent restrictions]
+    end
+
+    subgraph BillingManagement [Billing & Subscription Management]
+        style BillingManagement fill:#FF7F50
+        V[Subscription plans –\nBasic, Standard, Premium] --> W[Secure payment gateways –\nCredit/Debit Cards, PayPal,\nApple Pay, Google Pay]
+        W --> X[Auto-renewal & cancellation options]
+        X --> Y[Notifications for payment failures]
+    end
+
+    subgraph SystemMonitoring [System Monitoring & Security]
+        style SystemMonitoring fill:#FF6347
+        Z[Load balancing\nfor traffic distribution] --> AA[Logging,\nerror handling,\nserver health monitoring]
+        AA --> AB[AI-driven fraud detection]
+        AA --> AC[Compliance with\nGDPR, PCI-DSS,\nand regional data laws]
+    end
+
+    %% Data flow arrows
+    A -->|Authentication & Profile| C
+    D -->|Session Info| E
+    D -->|User Activity| S
+    E --> F
+    E --> G
+    E --> H
+    F -->|Content Recommendations| I
+    J -->|Content Delivery| N
+    L -->|Streaming Data| N
+    N -->|Playback Control| O
+    O -->|User Interaction| R
+    S -->|User Insights| F
+    V -->|Payment Processing| W
+    X -->|Notifications| V
+    AA -->|Monitoring Data| Z
+    AC -->|Compliance Monitoring| AA

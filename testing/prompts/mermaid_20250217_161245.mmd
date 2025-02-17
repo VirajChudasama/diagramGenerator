@@ -1,0 +1,25 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500', 'primaryTextColor': '#FF4500', 'tertiaryColor': '#FF4500'}}}%%
+flowchart TD
+    A[User Interaction<br/> & Authentication]:::lightBlue -->|Login via OAuth, Google, Facebook, Email| B[Content Discovery<br/> & Recommendation]:::lightGreen
+    B -->|Personalized homepage| C[Content Management<br/> & CDN Distribution]:::lightYellow
+    B -->|AI-powered recommendation<br/> using collaborative filtering| C
+    B -->|Search with filters| C
+    B -->|Trending & Top 10 lists| C
+    C -->|Content stored in a<br/>distributed database| D[Streaming & Playback]:::lightOrange
+    D -->|Adaptive Bitrate Streaming| E[User Activity<br/> & Engagement Tracking]:::lightGrey
+    D -->|Video player with subtitles<br/> & multi-audio tracks| E
+    E -->|Watch history tracking &<br/>resume playback| F[Billing & Subscription<br/> Management]:::lightRed
+    F -->|Subscription plans<br/> – Basic, Standard, Premium| G[System Monitoring<br/> & Security]
+    G -->|Load balancing for<br/>traffic distribution| A
+    E -->|Real-time analytics on<br/>watch time, session duration| G
+    G -->|AI-driven fraud detection| F
+    F -->|Secure payment gateways<br/> – Credit/Debit, PayPal| A
+    F -->|Auto-renewal & cancellation options| A
+    A -->>|User interactions<br/>navigate back| A
+
+    classDef lightBlue fill:#87CEEB;
+    classDef lightGreen fill:#90EE90;
+    classDef lightYellow fill:#FFD700;
+    classDef lightOrange fill:#FFA07A;
+    classDef lightGrey fill:#D3D3D3;
+    classDef lightRed fill:#FF6347;

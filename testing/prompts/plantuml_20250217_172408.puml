@@ -1,0 +1,27 @@
+@startuml
+skinparam backgroundColor #F5F5DC
+skinparam arrowColor #FF4500
+skinparam component {
+    BackgroundColor #87CEEB
+    BorderColor #000000
+}
+
+package "User Management" {
+    [User] as user
+    [Admin] as admin
+}
+
+package "Product Management" {
+    [Product] as product
+}
+
+package "Order Management" {
+    [Order] as order
+}
+
+user --> order: "Creates"
+admin --> user: "Manages"
+admin --> product: "Administers"
+order --> product: "Contains"
+
+@enduml
