@@ -1,0 +1,9 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}{'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'tertiaryColor': '#FF4500'}}}%%
+flowchart TD
+    A[Loan Application] -->|Submit Application| B[Application Review]
+    B -->|Check Credit Score| C[Credit Evaluation]
+    C -->|Approve or Reject| D[Loan Approval]
+    D -->|If Approved| E[Loan Agreement]
+    D -->|If Rejected| F[Notify Applicant]
+    E -->|Sign Agreement| G[Disbursement of Funds]
+    G -->|Loan Disbursed| H[Loan Closure]

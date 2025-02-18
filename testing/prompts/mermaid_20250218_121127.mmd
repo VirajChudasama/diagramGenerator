@@ -1,0 +1,128 @@
+%%{init: {'theme': 'base', 'themeVariables': {'background': '#F5F5DC', 'primaryColor': '#87CEEB', 'edgeLabelBackground': '#FF4500'}}}%%
+flowchart TD
+    A[User Interaction & Authentication]:::blue
+    B[Content Discovery & Recommendation]:::green
+    C[Content Management & CDN Distribution]:::yellow
+    D[Streaming & Playback]:::orange
+    E[User Activity & Engagement Tracking]:::grey
+    F[Billing & Subscription Management]:::red
+    G[System Monitoring & Security]:::red
+
+    A1[Web, Mobile, Smart TV, Gaming Console]
+    A2[Login via OAuth, Google, Facebook, Email]
+    A3[Multi-profile selection]
+    A4[Secure session handling]
+
+    A -->|User accesses| A1
+    A -->|Authentication| A2
+    A -->|Profile selection| A3
+    A -->|Session management| A4
+
+    B1[Personalized homepage]
+    B2[AI-powered recommendations] 
+    B3[Search with filters (genre, language, year)] 
+    B4[Trending and Top 10 lists]
+
+    A -->|Content discovery| B
+    B -->|Displays recommendations| B1
+    B -->|Collaborative filtering & deep learning| B2
+    B -->|Search functionalities| B3
+    B -->|Trending content| B4
+
+    C1[Distributed database storage]
+    C2[Content management system (CMS)]
+    C3[Encoding & transcoding]
+    C4[CDN integration with edge servers]
+    C5[DRM enforcement]
+
+    B -->|Content management| C
+    C -->|Stores and processes content| C1
+    C -->|Content management tools| C2
+    C -->|Transcoding steps| C3
+    C -->|Edge server distribution| C4
+    C -->|Protects content| C5 
+
+    D1[Adaptive Bitrate Streaming]
+    D2[Video player with subtitles & audio tracks]
+    D3[Buffering & preloading]
+    D4[Watch history tracking & resume playback]
+
+    C -->|Delivers content| D
+    D -->|Quality adjustment| D1
+    D -->|User experience enhancements| D2
+    D -->|Improves playback| D3
+    D -->|Tracks user activity| D4
+
+    E1[Real-time analytics on watch time]
+    E2[AI-powered insights]
+    E3[Parental controls & restrictions]
+
+    D -->|User engagement data| E
+    E -->|Provides insights| E1
+    E -->|Enhances recommendations| E2
+    E -->|Restricts content| E3
+
+    F1[Subscription plans - Basic, Standard, Premium]
+    F2[Secure payment gateways]
+    F3[Auto-renewal & cancellation]
+    F4[Notifications for payment failures]
+
+    E -->|Subscription management| F
+    F -->|Payment options| F1
+    F -->|Handles payments| F2
+    F -->|Manage subscriptions| F3
+    F -->|Alerts for issues| F4
+
+    G1[Load balancing for traffic]
+    G2[Logging and error handling]
+    G3[AI-driven fraud detection]
+    G4[Compliance with GDPR & PCI-DSS]
+
+    F -->|System integrity maintenance| G
+    G -->|Manages traffic| G1
+    G -->|Monitors system health| G2
+    G -->|Detects anomalies| G3
+    G -->|Ensures legal compliance| G4
+
+    classDef blue fill:#87CEEB;
+    classDef green fill:#90EE90;
+    classDef yellow fill:#FFD700;
+    classDef orange fill:#FFA500;
+    classDef grey fill:#D3D3D3;
+    classDef red fill:#FF7F7F;
+
+%% Apply arrow color using linkStyle (edge styling)
+    linkStyle 0 stroke:#FF4500,stroke-width:2px;
+    linkStyle 1 stroke:#FF4500,stroke-width:2px;
+    linkStyle 2 stroke:#FF4500,stroke-width:2px;
+    linkStyle 3 stroke:#FF4500,stroke-width:2px;
+    linkStyle 4 stroke:#FF4500,stroke-width:2px;
+    linkStyle 5 stroke:#FF4500,stroke-width:2px;
+    linkStyle 6 stroke:#FF4500,stroke-width:2px;
+    linkStyle 7 stroke:#FF4500,stroke-width:2px;
+    linkStyle 8 stroke:#FF4500,stroke-width:2px;
+    linkStyle 9 stroke:#FF4500,stroke-width:2px;
+    linkStyle 10 stroke:#FF4500,stroke-width:2px;
+    linkStyle 11 stroke:#FF4500,stroke-width:2px;
+    linkStyle 12 stroke:#FF4500,stroke-width:2px;
+    linkStyle 13 stroke:#FF4500,stroke-width:2px;
+    linkStyle 14 stroke:#FF4500,stroke-width:2px;
+    linkStyle 15 stroke:#FF4500,stroke-width:2px;
+    linkStyle 16 stroke:#FF4500,stroke-width:2px;
+    linkStyle 17 stroke:#FF4500,stroke-width:2px;
+    linkStyle 18 stroke:#FF4500,stroke-width:2px;
+    linkStyle 19 stroke:#FF4500,stroke-width:2px;
+    linkStyle 20 stroke:#FF4500,stroke-width:2px;
+    linkStyle 21 stroke:#FF4500,stroke-width:2px;
+    linkStyle 22 stroke:#FF4500,stroke-width:2px;
+    linkStyle 23 stroke:#FF4500,stroke-width:2px;
+    linkStyle 24 stroke:#FF4500,stroke-width:2px;
+    linkStyle 25 stroke:#FF4500,stroke-width:2px;
+    linkStyle 26 stroke:#FF4500,stroke-width:2px;
+    linkStyle 27 stroke:#FF4500,stroke-width:2px;
+    linkStyle 28 stroke:#FF4500,stroke-width:2px;
+    linkStyle 29 stroke:#FF4500,stroke-width:2px;
+    linkStyle 30 stroke:#FF4500,stroke-width:2px;
+    linkStyle 31 stroke:#FF4500,stroke-width:2px;
+    linkStyle 32 stroke:#FF4500,stroke-width:2px;
+    linkStyle 33 stroke:#FF4500,stroke-width:2px;

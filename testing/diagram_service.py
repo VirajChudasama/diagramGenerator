@@ -158,12 +158,12 @@ def generate_mermaid_diagram(background_color, arrow_color, box_color, custom_pr
 
         # Use custom prompt if provided, otherwise use default
         mermaid_prompt = f"{custom_prompt} Use the following styles: " \
-                     f"Background Color: `{background_color}`, Arrows: `{arrow_color}`, Boxes: `{box_color}`. " \
-                     "Ensure the diagram is **fully correct**, avoiding invalid syntax. " \
-                     "Use `\\n` for multi-line text (no `<br>`). " \
-                     f"Format it as a **flowchart** and apply styling using `%%{{init: {{'theme': 'base', 'themeVariables': {{'background': '{background_color}', 'primaryColor': '{box_color}', 'edgeLabelBackground': '{arrow_color}'}}}}" \
-                     f"{{'background': '{background_color}', 'primaryColor': '{box_color}', 'tertiaryColor': '{arrow_color}'}}}}}}%%`."
+                         f"Background Color: `{background_color}`, Arrows: `{arrow_color}`, Boxes: `{box_color}`. " \
+                         "Ensure the diagram is **fully correct**, avoiding invalid syntax. " \
+                         "Use `\\n` for multi-line text (no `<br>`). " \
+                         f"Format it as a **flowchart** and apply styling using `%%{{init: {{'theme': 'base', 'themeVariables': {{'background': '{background_color}', 'primaryColor': '{box_color}', 'edgeLabelBackground': '{arrow_color}'}}}}}}%%`."
 
+        # Generate the diagram using the prompt
         response = generate_diagram(mermaid_prompt)
 
         if "```mermaid" in response:
@@ -171,13 +171,23 @@ def generate_mermaid_diagram(background_color, arrow_color, box_color, custom_pr
         else:
             raise ValueError("Error: No Mermaid diagram found in the response.")
 
+        # Count the number of links in the generated diagram (occurrences of '-->' denote links)
+        num_links = mermaid_code.count("-->")
+
+        # Create the linkStyle lines dynamically based on num_links
+        link_styles = "\n".join([f"    linkStyle {i} stroke:{arrow_color},stroke-width:2px;" for i in range(num_links)])
+
+        # **Append `linkStyle` directly to `mermaid_code` instead of `mermaid_prompt`**
+        mermaid_code += f"\n\n%% Apply arrow color using linkStyle (edge styling)\n{link_styles}"
+
+        # Save the updated diagram code to the file
         save_diagram_code(mermaid_code, mmd_path)
 
         # Ensure file is created before proceeding
         if not mmd_path.exists():
             raise FileNotFoundError(f"Error: Mermaid file was not created at {mmd_path}")
 
-        # Generate image
+        # Generate image from the diagram
         try:
             generate_image_from_kroki("mermaid", mermaid_code, img_path)
         except Exception as e:
